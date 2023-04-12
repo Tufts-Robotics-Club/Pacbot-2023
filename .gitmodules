@@ -1,0 +1,3 @@
+[submodule "robomodules"]
+	path = robomodules
+	url = https://github.com/HarvardURC/robomodules.git
