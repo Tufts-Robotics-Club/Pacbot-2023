@@ -6,4 +6,4 @@ motor2 = PhaseEnableMotor(6, 13)
 motor1.forward()
 motor2.forward()
 
-sleep(5)
+sleep(3)
