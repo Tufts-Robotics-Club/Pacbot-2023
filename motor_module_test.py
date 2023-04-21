@@ -151,7 +151,7 @@ def main():
     # Later will deal with messages from other modules
 
     # Making a server because AAAAa
-    server = robomodules.Server(ADDRESS, PORT, MsgType)
+    server = rm.Server(ADDRESS, PORT, MsgType)
     # server = robomodules.Server("192.168.0.196", PORT, MsgType)
     # print("Address: " + str("192.168.0.196"))
     print("Address: " + str(ADDRESS))
