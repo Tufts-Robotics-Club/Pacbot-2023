@@ -2,7 +2,7 @@ from gpiozero import PhaseEnableMotor, RotaryEncoder
 from time import sleep
 
 motor1 = PhaseEnableMotor(19, 26)
-motor2 = PhaseEnableMotor(6, 13)
+motor2 = PhaseEnableMotor(5, 6)
 rotar1 = RotaryEncoder(23, 24, max_steps=0)
 rotar2 = RotaryEncoder(14, 15, max_steps=0)
 motor1.forward(0.5)

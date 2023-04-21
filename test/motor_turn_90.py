@@ -6,7 +6,7 @@ START_ANGLE = sensor.euler[0]
 TARGET_ANGLE = sensor.euler[0] + MAX_ANGLE
 
 motor1 = PhaseEnableMotor(19, 26)
-motor2 = PhaseEnableMotor(6, 13)
+motor2 = PhaseEnableMotor(5, 6)
 rotar1 = RotaryEncoder(23, 24, max_steps=0)
 rotar2 = RotaryEncoder(14, 15, max_steps=0)
 
