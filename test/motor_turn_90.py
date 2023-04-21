@@ -18,7 +18,7 @@ MAX_ANGLE = 90
 START_ANGLE = sensor.euler[0]
 print("Euler angle: {}".format(sensor.euler))       
 TARGET_ANGLE = sensor.euler[0] + MAX_ANGLE
-print("Target angle: {}".TARGET_ANGLE)       
+print(TARGET_ANGLE)       
 
 motor1 = PhaseEnableMotor(19, 26)
 motor2 = PhaseEnableMotor(5, 6)
