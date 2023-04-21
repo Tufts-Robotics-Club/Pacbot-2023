@@ -35,6 +35,7 @@ class MotorModule(rm.ProtoModule):
 
 
         # Need to set up connections and stuff
+        self.subscriptions = [MsgType.PACMAN_DIRECTION, MsgType.GYRO_YAW, MsgType.LIGHT_STATE]
         super().__init__(addr, port, message_buffers, MsgType, self.FREQUENCY, self.subscriptions)
 
         # Motors - have to change the pins or whatever
