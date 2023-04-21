@@ -12,6 +12,7 @@ tca = adafruit_tca9548a.TCA9548A(i2c)
 
 # imu (attached to port 0 of multiplexer)
 sensor = adafruit_bno055.BNO055_I2C(tca[0])
+print("Gyroscope (rad/sec): {}".format(sensor.gyro))
 
 motor1 = PhaseEnableMotor(19, 26)
 motor2 = PhaseEnableMotor(5, 6)
