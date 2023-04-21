@@ -150,6 +150,14 @@ def main():
     # For now taking WASD input and feeding it into the motor module
     # Later will deal with messages from other modules
 
+    # Making a server because AAAAa
+    server = robomodules.Server(ADDRESS, PORT, MsgType)
+    # server = robomodules.Server("192.168.0.196", PORT, MsgType)
+    # print("Address: " + str("192.168.0.196"))
+    print("Address: " + str(ADDRESS))
+    print("Port: " + str(PORT))
+    server.run()
+
     # Create motor module
     motor_module = MotorModule(ADDRESS, PORT)
     motor_module.run()
