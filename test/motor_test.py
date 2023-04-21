@@ -12,3 +12,5 @@ motor2.stop()
 while True:
     print(rotar1.steps, rotar2.steps)
     sleep(0.1)
+
+#random comment bc githates me!
