@@ -1,5 +1,5 @@
 import robomodules as rm
-# from messages import MsgType, message_buffers, PacmanDirection, GyroYaw
+from messages import MsgType, message_buffers, PacmanDirection, GyroYaw
 from gpiozero import PhaseEnableMotor, RotaryEncoder
 from enum import IntEnum
 import math
@@ -35,7 +35,9 @@ class MotorModule(rm.ProtoModule):
 
 
         # Need to set up connections and stuff
-        
+        self.subscriptions = [MsgType.PACMAN_DIRECTION, MsgType.GYRO_YAW, MsgType.LIGHT_STATE]
+        super().__init__(addr, port, message_buffers, MsgType, self.FREQUENCY, self.subscriptions)
+
         # Motors - have to change the pins or whatever
         self.left_motor = PhaseEnableMotor(*self.LEFT_MOTOR_PINS)
         self.right_motor = PhaseEnableMotor(*self.RIGHT_MOTOR_PINS)
