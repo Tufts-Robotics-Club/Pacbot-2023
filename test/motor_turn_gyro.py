@@ -25,7 +25,7 @@ motor2.stop()
 
 angle = 0
 
-while sensor.euler[0] < 90:
+while sensor.euler[0] < 45:
     angle += sensor.gyro[0] * 57.29578
     #print("Gyroscope (rad/sec): {}".format(sensor.gyro))
     print("Euler angle: {}".format(sensor.euler))      
