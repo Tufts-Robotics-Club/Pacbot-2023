@@ -1,5 +1,17 @@
 from gpiozero import PhaseEnableMotor, RotaryEncoder
 from time import sleep
+import time
+import board
+import adafruit_bno055
+import adafruit_tca9548a
+
+i2c = board.I2C()  # uses board.SCL and board.SDA
+
+# multiplexer
+tca = adafruit_tca9548a.TCA9548A(i2c)
+
+# imu (attached to port 0 of multiplexer)
+sensor = adafruit_bno055.BNO055_I2C(tca[0])
 
 motor1 = PhaseEnableMotor(19, 26)
 motor2 = PhaseEnableMotor(5, 6)
