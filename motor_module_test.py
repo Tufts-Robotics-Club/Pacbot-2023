@@ -96,8 +96,8 @@ class MotorModule(rm.ProtoModule):
     def tick(self):
         
         # Set various variables
-        left_remaining = math.abs(self.left_target - self.left_encoder.steps)
-        right_remaining = math.abs(self.left_target - self.left_encoder.steps)
+        left_remaining = abs(self.left_target - self.left_encoder.steps)
+        right_remaining = abs(self.left_target - self.left_encoder.steps)
         left_direction = -1 if self.left_target < self.left_encoder.steps else 1
         right_direction = -1 if self.right_target < self.right_encoder.steps else 1
         left_speed = 0
