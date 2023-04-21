@@ -1,5 +1,5 @@
 import robomodules as rm
-from messages import MsgType, message_buffers, PacmanDirection, GyroYaw
+# from messages import MsgType, message_buffers, PacmanDirection, GyroYaw
 from gpiozero import PhaseEnableMotor, RotaryEncoder
 from enum import IntEnum
 import math
@@ -8,13 +8,12 @@ import os
 ADDRESS = os.environ.get("LOCAL_ADDRESS","localhost")
 PORT = os.environ.get("LOCAL_PORT", 11295)
 
-Direction = Enum("Direction", ["FORWARD", "LEFT", "BACKWARD", "RIGHT"])
+Direction = IntEnum("Direction", ["FORWARD", "LEFT", "BACKWARD", "RIGHT"])
 
 class MotorModule(rm.ProtoModule):
     def __init__(self, addr, port):
         
         # Constants \U+1F929
-
         self.FREQUENCY = 100
 
         # How far from the target distance is acceptible before stopping
@@ -30,7 +29,7 @@ class MotorModule(rm.ProtoModule):
         self.MOVE_ROTATIONS = 6 / (32 * math.pi / 25.4)
 
         self.LEFT_MOTOR_PINS = (19, 26)
-        self.RIGHT_MOTOR_PINS = (6, 13)
+        self.RIGHT_MOTOR_PINS = (5, 6)
         self.LEFT_ENCODER_PINS = (23, 24)
         self.RIGHT_ENCODER_PINS = (14, 15)
 
@@ -44,8 +43,8 @@ class MotorModule(rm.ProtoModule):
         self.left_encoder = RotaryEncoder(*self.LEFT_ENCODER_PINS, max_steps=0)
         self.right_encoder = RotaryEncoder(*self.RIGHT_ENCODER_PINS, max_steps=0)
 
-        self.left_target = 0
-        self.right_target = 0
+        self.left_target = self.left_encoder.steps
+        self.right_target = self.right_encoder.steps
         self.current_direction = Direction.FORWARD
         self.action_queue = []
 
@@ -73,12 +72,12 @@ class MotorModule(rm.ProtoModule):
         # Set current direction to new direction
         self.current_direction = new_direction
 
-
+    # Moves forward one square
     def _forward(self):
         self.left_target += self.MOVE_ROTATIONS
         self.right_target -= self.MOVE_ROTATIONS
 
-    # Just going to take a direction and do stuff with it
+    # Takes a direction, turns to that direction, then moves forward
     def _execute(self, direction: Direction):
         # Turn
         self._turn(direction)
@@ -86,15 +85,15 @@ class MotorModule(rm.ProtoModule):
         # Move
         self._forward()
 
-
-
+    # Adds a movement action (direction) to the queue
     def add_action(self, action: Direction):
         self.action_queue.push(action)
         self.action_queue.pop()
 
+    # Main loop
     def tick(self):
         
-
+        # Set various variables
         left_remaining = math.abs(self.left_target - self.left_encoder.steps)
         right_remaining = math.abs(self.left_target - self.left_encoder.steps)
         left_direction = -1 if self.left_target < self.left_encoder.steps else 1
@@ -102,6 +101,7 @@ class MotorModule(rm.ProtoModule):
         left_speed = 0
         right_speed = 0
 
+        # If reached target
         if left_remaining < self.STOPPING_ERROR and right_remaining < self.STOPPING_ERROR:
             # Reached target
             left_speed = 0
@@ -137,17 +137,11 @@ class MotorModule(rm.ProtoModule):
         else:
             self.right_motor.stop()
         
-        
-        
-
-
-
         # in the drive straight funtion we want to check if one wheel has gone further than the other
         # one wheel has gone further than the other we should increase the power of the other motor so the robot drives straight
         # then should have the robot drive with the new powers for both wheels
             
         # Set motors based on drive mode
-        
 
 
 def main():
@@ -175,9 +169,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
