@@ -31,7 +31,7 @@ while angle < 90:
     print("Euler angle: {}".format(sensor.euler))      
     print(sensor.gyro[0])
     print(angle)
-    motor1.forward(0.5)
-    motor2.backward(0.5)
+    motor1.backward(0.5)
+    motor2.forward(0.5)
     sleep(0.1)
 
