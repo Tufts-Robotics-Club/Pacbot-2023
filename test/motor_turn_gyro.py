@@ -28,7 +28,8 @@ angle = 0
 while angle < 90:
     angle += sensor.gyro[0]
     print("Gyroscope (rad/sec): {}".format(sensor.gyro))
-    print(rotar1.steps, rotar2.steps)
+    print(sensor.gyro[0])
+    print(angle)
     motor1.forward(0.5)
     motor2.backward(0.5)
     sleep(0.1)
