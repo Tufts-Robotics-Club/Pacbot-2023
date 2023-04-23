@@ -24,4 +24,3 @@ dependencies:
   - zlib=1.2.11
   - pip:
     - pygame==2.1.0
-prefix: /Users/Tom/anaconda3/envs/PacBot
