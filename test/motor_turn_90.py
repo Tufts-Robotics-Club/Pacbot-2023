@@ -13,14 +13,15 @@ tca = adafruit_tca9548a.TCA9548A(i2c)
 # imu (attached to port 0 of multiplexer)
 sensor = adafruit_bno055.BNO055_I2C(tca[0])
 
-motor1 = PhaseEnableMotor(19, 26)
+motor1 = PhaseEnableMotor(27, 22)
 motor2 = PhaseEnableMotor(5, 6)
 rotar1 = RotaryEncoder(23, 24, max_steps=0)
 rotar2 = RotaryEncoder(14, 15, max_steps=0)
 
+print("Start Euler angle: {}".format(sensor.euler))    
 TURN_ANGLE = 90
 START_ANGLE = sensor.euler[0]
-print("Start Euler angle: {}".format(sensor.euler))       
+
 TARGET_ANGLE = (START_ANGLE + TURN_ANGLE) % 360
 print(TARGET_ANGLE)       
 
