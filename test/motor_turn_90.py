@@ -24,16 +24,16 @@ MAX_ANGLE = 360
 TURN_ANGLE = 90
 
 START_ANGLE = sensor.euler[0]
-TARGET_ANGLE = round(START_ANGLE + TURN_ANGLE)
-    if TARGET_ANGLE > MAX_ANGLE:
-        TARGET_ANGLE = MAX_ANGLE
-    elif TARGET_ANGLE < -MAX_ANGLE:
-        TARGET_ANGLE = -MAX_ANGLE
+# TARGET_ANGLE = round(START_ANGLE + TURN_ANGLE)
+#     if TARGET_ANGLE > MAX_ANGLE:
+#         TARGET_ANGLE = MAX_ANGLE
+#     elif TARGET_ANGLE < -MAX_ANGLE:
+#         TARGET_ANGLE = -MAX_ANGLE
 
-#TARGET_ANGLE = (START_ANGLE + TURN_ANGLE) % 360
+TARGET_ANGLE = (START_ANGLE + TURN_ANGLE) % 360
 print(TARGET_ANGLE)       
 
-while (sensor.euler[0] < TARGET_ANGLE):
+while ((sensor.euler[0] % 360) < TARGET_ANGLE):
     print("Current Euler angle: {}".format(sensor.euler))       
     motor2.forward(0.05)
     motor1.backward(0.05)
