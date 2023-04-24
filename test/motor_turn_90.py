@@ -39,6 +39,8 @@ if (START_ANGLE > 90):
 
 DELTA = START_ANGLE - OFFSET
 
+# TODO: Both motors are going forward, need to have one going backwards
+#       Not stopping at 90 if START_ANGLE is ~360 due to inaccurate readings
 while (DELTA < TARGET_ANGLE):
     if (sensor.euler[0] > 90):
         DELTA = sensor.euler[0] - OFFSET
