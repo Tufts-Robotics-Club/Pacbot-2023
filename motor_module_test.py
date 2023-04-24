@@ -151,21 +151,6 @@ def main():
     # Create motor module
     motor_module = MotorModule(ADDRESS, PORT)
     motor_module.run()
-    print("Motor module running")
-
-    # Get WASD input and add the actions to the queue based on that
-    while True:
-        key = input()
-        if key == "w":
-            motor_module.add_action(Direction.FORWARD)
-        elif key == "a":
-            motor_module.add_action(Direction.LEFT)
-        elif key == "s":
-            motor_module.add_action(Direction.BACKWARD)
-        elif key == "d":
-            motor_module.add_action(Direction.RIGHT)
-        elif key == "q":
-            break
 
 
 if __name__ == "__main__":
