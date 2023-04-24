@@ -35,8 +35,8 @@ print(TARGET_ANGLE)
 
 while ((sensor.euler[0] % 360) < TARGET_ANGLE):
     print("Current Euler angle: {}".format(sensor.euler))       
-    motor2.forward(0.05)
-    motor1.backward(0.05)
+    motor2.forward(0.1)
+    motor1.backward(0.1)
     sleep(0.1)
 
 motor1.stop()
