@@ -46,7 +46,7 @@ while (DELTA < TARGET_ANGLE):
     ##if (sensor.euler[0] > 90):
     ##    DELTA = sensor.euler[0] - OFFSET
     ##else:
-        DELTA = sensor.euler[0]
+    DELTA = sensor.euler[0]
 
     print("Current Euler angle: {}".format(sensor.euler))      
     print("Delta: " + str(DELTA))        
