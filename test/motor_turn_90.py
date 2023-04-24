@@ -18,11 +18,19 @@ motor2 = PhaseEnableMotor(5, 6)
 rotar1 = RotaryEncoder(23, 24, max_steps=0)
 rotar2 = RotaryEncoder(14, 15, max_steps=0)
 
-print("Start Euler angle: {}".format(sensor.euler))    
-TURN_ANGLE = 90
-START_ANGLE = sensor.euler[0]
+print("Start Euler angle: {}".format(sensor.euler))  
 
-TARGET_ANGLE = (START_ANGLE + TURN_ANGLE) % 360
+MAX_ANGLE = 360
+TURN_ANGLE = 90
+
+START_ANGLE = sensor.euler[0]
+TARGET_ANGLE = round(START_ANGLE + TURN_ANGLE)
+    if TARGET_ANGLE > MAX_ANGLE:
+        TARGET_ANGLE = MAX_ANGLE
+    elif TARGET_ANGLE < -MAX_ANGLE:
+        TARGET_ANGLE = -MAX_ANGLE
+
+#TARGET_ANGLE = (START_ANGLE + TURN_ANGLE) % 360
 print(TARGET_ANGLE)       
 
 while (sensor.euler[0] < TARGET_ANGLE):
