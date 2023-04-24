@@ -15,8 +15,8 @@ sensor = adafruit_bno055.BNO055_I2C(tca[0])
 
 motor1 = PhaseEnableMotor(19, 26)
 motor2 = PhaseEnableMotor(5, 6)
-rotar1 = RotaryEncoder(23, 24, max_steps=0)
-rotar2 = RotaryEncoder(14, 15, max_steps=0)
+rotar1 = RotaryEncoder(23, 24, max_steps=12)
+rotar2 = RotaryEncoder(14, 15, max_steps=12)
 
 TURN_ANGLE = 90
 START_ANGLE = sensor.euler[0]
