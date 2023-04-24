@@ -5,7 +5,7 @@ from enum import IntEnum
 import math
 import os
 
-ADDRESS = os.environ.get("LOCAL_ADDRESS","localhost")
+ADDRESS = os.environ.get("LOCAL_ADDRESS", "localhost")
 PORT = os.environ.get("LOCAL_PORT", 11295)
 
 Direction = IntEnum("Direction", ["FORWARD", "LEFT", "BACKWARD", "RIGHT"])
@@ -147,17 +147,6 @@ class MotorModule(rm.ProtoModule):
 
 
 def main():
-    # For now taking WASD input and feeding it into the motor module
-    # Later will deal with messages from other modules
-
-    # Making a server because AAAAa
-    server = rm.Server(ADDRESS, PORT, MsgType)
-    # server = robomodules.Server("192.168.0.196", PORT, MsgType)
-    # print("Address: " + str("192.168.0.196"))
-    print("Address: " + str(ADDRESS))
-    print("Port: " + str(PORT))
-    server.run()
-    print("Server running")
 
     # Create motor module
     motor_module = MotorModule(ADDRESS, PORT)
