@@ -157,10 +157,12 @@ def main():
     print("Address: " + str(ADDRESS))
     print("Port: " + str(PORT))
     server.run()
+    print("Server running")
 
     # Create motor module
     motor_module = MotorModule(ADDRESS, PORT)
     motor_module.run()
+    print("Motor module running")
 
     # Get WASD input and add the actions to the queue based on that
     while True:
