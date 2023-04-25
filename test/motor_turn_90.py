@@ -46,7 +46,7 @@ motor1.forward(0.1)
 # TODO: Both motors are going forward, need to have one going backwards
 #       Not stopping at 90 if START_ANGLE is ~360 due to inaccurate readings
 while (DELTA < TARGET_ANGLE):
-    if (sensor.euler[0] > 90):
+    if (sensor.euler[0] > 180):
         DELTA = sensor.euler[0] - OFFSET
     else:
         DELTA = sensor.euler[0]
