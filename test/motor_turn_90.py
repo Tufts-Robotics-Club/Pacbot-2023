@@ -54,7 +54,7 @@ while (sensor.euler[0] < range_lower or sensor.euler[0] > range_upper):
     # else:
     #     DELTA = sensor.euler[0]
 
-    print("Current Euler angle: {}".format(sensor.euler))      
+    # print("Current Euler angle: {}".format(sensor.euler))      
     # print("Delta: " + str(DELTA))        
     
 motor1.stop()
