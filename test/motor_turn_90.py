@@ -54,8 +54,9 @@ while True:
     print("Current Euler angle: {}".format(sensor.euler))
     if (float(sensor.euler[0]) > range_lower and float(sensor.euler[0]) < range_upper):
         print("Stop motor")
-        motor1.stop()
-        motor2.stop()
+        break
+
+        
     # if (sensor.euler[0] > 180):
     #     DELTA = sensor.euler[0] - OFFSET
     # else:
@@ -64,7 +65,8 @@ while True:
     # print("Current Euler angle: {}".format(sensor.euler))      
     # print("Delta: " + str(DELTA))        
     
-
+motor1.stop()
+motor2.stop()
 
 #     print(rotar1.steps, rotar2.steps)
 
