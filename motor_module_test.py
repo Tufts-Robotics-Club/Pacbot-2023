@@ -149,6 +149,7 @@ class MotorModule(rm.ProtoModule):
 def main():
 
     # Create motor module
+    print("Hey")
     motor_module = MotorModule(ADDRESS, PORT)
     motor_module.run()
 
