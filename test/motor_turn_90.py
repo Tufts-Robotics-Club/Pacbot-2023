@@ -50,8 +50,10 @@ print("Range: "+ str(range_lower) + ", " + str(range_upper))
 # TODO: Both motors are going forward, need to have one going backwards
 #       Not stopping at 90 if START_ANGLE is ~360 due to inaccurate readings
 while True:
+    print(rotar1.steps, rotar2.steps)
     print("Current Euler angle: {}".format(sensor.euler))
     if (sensor.euler[0] > range_lower and sensor.euler[0] < range_upper):
+        print("Stop motor")
         motor1.stop()
         motor2.stop()
     # if (sensor.euler[0] > 180):
