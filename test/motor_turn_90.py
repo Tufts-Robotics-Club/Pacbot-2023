@@ -52,7 +52,7 @@ print("Range: "+ str(range_lower) + ", " + str(range_upper))
 while True:
     print(rotar1.steps, rotar2.steps)
     print("Current Euler angle: {}".format(sensor.euler))
-    if (float(sensor.euler[0]) > range_lower and float(sensor.euler[0]) < range_upper):
+    if (sensor.euler[0] > range_lower and sensor.euler[0] < range_upper):
         print("Stop motor")
         break
 
