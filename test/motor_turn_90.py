@@ -21,7 +21,7 @@ rotar2 = RotaryEncoder(14, 15, max_steps=0)
 print("Start Euler angle: {}".format(sensor.euler))  
 
 MAX_ANGLE = 360
-TURN_ANGLE = 60
+TURN_ANGLE = 45
 
 START_ANGLE = sensor.euler[0] #ideally 0, often 359
 # TARGET_ANGLE = round(START_ANGLE + TURN_ANGLE)
@@ -40,8 +40,8 @@ if (START_ANGLE > 90):
 DELTA = START_ANGLE - OFFSET
 #DELTA = 0 to -1
 
-motor2.backward(0.1)
-motor1.forward(0.1)
+motor2.backward(0.01)
+motor1.forward(0.01)
 
 range_upper = TARGET_ANGLE + 10
 range_lower = TARGET_ANGLE - 10
