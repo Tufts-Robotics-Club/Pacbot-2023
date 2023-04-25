@@ -31,7 +31,7 @@ START_ANGLE = sensor.euler[0] #ideally 0, often 359
 #         TARGET_ANGLE = -MAX_ANGLE
 
 TARGET_ANGLE = (START_ANGLE + TURN_ANGLE) % 360 #90
-print(TARGET_ANGLE)       
+print("Target angle: "+ str(TARGET_ANGLE))       
 
 OFFSET = 0
 if (START_ANGLE > 90):
