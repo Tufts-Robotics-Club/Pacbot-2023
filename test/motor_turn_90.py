@@ -43,11 +43,9 @@ DELTA = START_ANGLE - OFFSET
 motor2.backward(0.1)
 motor1.forward(0.1)
 
-
-
 # TODO: Both motors are going forward, need to have one going backwards
 #       Not stopping at 90 if START_ANGLE is ~360 due to inaccurate readings
-while (sensor.euler[0] != range(80, 100)):
+while (sensor.euler[0] < 80 or sensor.euler[0] > 100):
     # if (sensor.euler[0] > 180):
     #     DELTA = sensor.euler[0] - OFFSET
     # else:
@@ -56,8 +54,6 @@ while (sensor.euler[0] != range(80, 100)):
     print("Current Euler angle: {}".format(sensor.euler))      
     print("Delta: " + str(DELTA))        
     
-    
-
 motor1.stop()
 motor2.stop()
 
