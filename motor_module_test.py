@@ -8,7 +8,7 @@ import os
 ADDRESS = os.environ.get("LOCAL_ADDRESS", "localhost")
 PORT = os.environ.get("LOCAL_PORT", 11295)
 
-Direction = IntEnum("Direction", ["FORWARD", "LEFT", "BACKWARD", "RIGHT"])
+Direction = IntEnum("Direction", ["W", "A", "S", "D"])
 
 class MotorModule(rm.ProtoModule):
     def __init__(self, addr, port):
@@ -35,7 +35,7 @@ class MotorModule(rm.ProtoModule):
 
 
         # Need to set up connections and stuff
-        self.subscriptions = [MsgType.PACMAN_DIRECTION, MsgType.GYRO_YAW, MsgType.LIGHT_STATE]
+        self.subscriptions = [MsgType.PACMAN_DIRECTION]
         super().__init__(addr, port, message_buffers, MsgType, self.FREQUENCY, self.subscriptions)
 
         # Motors - have to change the pins or whatever
@@ -47,7 +47,6 @@ class MotorModule(rm.ProtoModule):
 
         self.left_target = self.left_encoder.steps
         self.right_target = self.right_encoder.steps
-        self.current_direction = Direction.FORWARD
         self.action_queue = []
 
         
@@ -144,6 +143,11 @@ class MotorModule(rm.ProtoModule):
         # then should have the robot drive with the new powers for both wheels
             
         # Set motors based on drive mode
+
+    def msg_received(self, msg, msg_type):
+        # Takes the message and adds it to the queue
+        if msg_type == MsgType.PACMAN_DIRECTION:
+            self.add_action(msg.direction)
 
 
 def main():
