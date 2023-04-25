@@ -40,8 +40,8 @@ if (START_ANGLE > 90):
 DELTA = START_ANGLE - OFFSET
 #DELTA = 0 to -1
 
-motor2.backward(0.01)
-motor1.forward(0.01)
+motor2.backward(0.001)
+motor1.forward(0.001)
 
 # TODO: Both motors are going forward, need to have one going backwards
 #       Not stopping at 90 if START_ANGLE is ~360 due to inaccurate readings
