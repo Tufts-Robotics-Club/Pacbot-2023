@@ -43,8 +43,8 @@ DELTA = START_ANGLE - OFFSET
 motor2.backward(0.01)
 motor1.forward(0.01)
 
-range_upper = TARGET_ANGLE + 5
-range_lower = TARGET_ANGLE - 5
+range_upper = TARGET_ANGLE + 3
+range_lower = TARGET_ANGLE - 3
 print("Range: "+ str(range_lower) + ", " + str(range_upper))       
 
 # TODO: Both motors are going forward, need to have one going backwards
