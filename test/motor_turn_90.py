@@ -54,7 +54,7 @@ while (DELTA < TARGET_ANGLE):
     print("Current Euler angle: {}".format(sensor.euler))      
     print("Delta: " + str(DELTA))        
     
-    sleep(0.1)
+    
 
 motor1.stop()
 motor2.stop()
