@@ -30,7 +30,7 @@ START_ANGLE = sensor.euler[0] #ideally 0, often 359
 #     elif TARGET_ANGLE < -MAX_ANGLE:
 #         TARGET_ANGLE = -MAX_ANGLE
 
-TARGET_ANGLE = (START_ANGLE + TURN_ANGLE) % 360
+TARGET_ANGLE = (START_ANGLE + TURN_ANGLE) % 360 #90
 print(TARGET_ANGLE)       
 
 OFFSET = 0
@@ -39,6 +39,9 @@ if (START_ANGLE > 90):
 
 DELTA = START_ANGLE - OFFSET
 #DELTA = 0 to -1
+
+motor2.backward(0.1)
+motor1.forward(0.1)
 
 # TODO: Both motors are going forward, need to have one going backwards
 #       Not stopping at 90 if START_ANGLE is ~360 due to inaccurate readings
@@ -50,8 +53,7 @@ while (DELTA < TARGET_ANGLE):
 
     print("Current Euler angle: {}".format(sensor.euler))      
     print("Delta: " + str(DELTA))        
-    motor2.backward(0.1)
-    motor1.forward(0.1)
+    
     sleep(0.1)
 
 motor1.stop()
