@@ -145,6 +145,7 @@ class MotorModule(rm.ProtoModule):
         # Set motors based on drive mode
 
     def msg_received(self, msg, msg_type):
+        print("Hey")
         # Takes the message and adds it to the queue
         if msg_type == MsgType.PACMAN_DIRECTION:
             self.add_action(msg.direction)
@@ -153,7 +154,6 @@ class MotorModule(rm.ProtoModule):
 def main():
 
     # Create motor module
-    print("Hey")
     motor_module = MotorModule(ADDRESS, PORT)
     motor_module.run()
 
