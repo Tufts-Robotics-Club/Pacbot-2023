@@ -62,6 +62,7 @@ while True:
             print("I am in range!", current_angle)
             motor1.stop()
             motor2.stop()
+            sleep(0.01)
             print("Stop motor")
             break
         control = pid(current_angle)
