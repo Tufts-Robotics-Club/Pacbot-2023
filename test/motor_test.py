@@ -11,6 +11,8 @@ motor2.forward(0.5)
 while True:
     print(rotar1.steps, rotar2.steps)
     sleep(0.1)
+    
+    break
 
 motor1.stop()
 motor2.stop()
