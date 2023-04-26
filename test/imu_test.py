@@ -45,4 +45,4 @@ while True:
     print("Gravity (m/s^2): {}".format(sensor.gravity))
     print()
 
-    time.sleep(1)
+    time.sleep(0.01)
