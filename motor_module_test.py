@@ -49,6 +49,8 @@ class MotorModule(rm.ProtoModule):
         self.right_target = self.right_encoder.steps
         self.action_queue = []
 
+        self.current_direction = Direction.W
+
         
     # Turns to the the increments * 90 degrees
     def _turn_real(self, increments: int):
@@ -88,8 +90,7 @@ class MotorModule(rm.ProtoModule):
 
     # Adds a movement action (direction) to the queue
     def add_action(self, action: Direction):
-        self.action_queue.push(action)
-        self.action_queue.pop()
+        self.action_queue.append(action)
 
     # Main loop
     def tick(self):
