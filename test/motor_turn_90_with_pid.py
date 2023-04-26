@@ -39,19 +39,16 @@ if (START_ANGLE > 90):
     OFFSET = 360
 
 DELTA = START_ANGLE - OFFSET
-#DELTA = 0 to -1
 
-# motor2.backward(0.01)
-# motor1.forward(0.01)
 
 pid = PID(0.005, 0, 0, setpoint=TARGET_ANGLE)
 pid.output_limits = (-1, 1)
 
-range_upper = TARGET_ANGLE + 10
-range_lower = TARGET_ANGLE - 10
+range_upper = TARGET_ANGLE + 2
+range_lower = TARGET_ANGLE - 2
 print("Range: "+ str(range_lower) + ", " + str(range_upper))       
 
-# TODO: 
+# TODO: stops at target angle, then segfault
 while True:
     current_angle = sensor.euler[0]
     if current_angle is None:
