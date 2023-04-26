@@ -65,7 +65,7 @@ while True:
             print("I am in range!", current_angle)
             motor1.stop()
             motor2.stop()
-            sleep(0.01)
+            sleep(0.1)
             print("Stop motor")
             break
         control = pid(current_angle)
@@ -86,8 +86,8 @@ while True:
 
     # print("Current Euler angle: {}".format(sensor.euler))      
     # print("Delta: " + str(DELTA))        
-    
-motor1.stop()
-motor2.stop()
+    sleep(0.1)
+# motor1.stop()
+# motor2.stop()
 
 #     print(rotar1.steps, rotar2.steps)
