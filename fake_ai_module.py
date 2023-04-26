@@ -21,7 +21,7 @@ class FakeAiModule(rm.ProtoModule):
             print("Sending message...")
             msg = PacmanDirection()
             msg.direction = 0
-            self.write(msg, MsgType.PACMAN_DIRECTION)
+            self.write(msg.SerializeToString(), MsgType.PACMAN_DIRECTION)
 
     def msg_received(self, msg, msg_type):
         pass
