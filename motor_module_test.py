@@ -89,7 +89,6 @@ class MotorModule(rm.ProtoModule):
     # Adds a movement action (direction) to the queue
     def add_action(self, action: Direction):
         self.action_queue.append(action)
-        self.action_queue.pop()
 
     # Main loop
     def tick(self):
