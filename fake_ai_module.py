@@ -17,14 +17,17 @@ class FakeAiModule(rm.ProtoModule):
 
     def tick(self):
         self.count += 1
-        if self.count % 500 == 0:
+        if self.count % 100 == 0:
             print("Sending message...")
-            self.write(PacmanDirection(direction=PacmanDirection.W), MsgType.PACMAN_DIRECTION)
+            msg = PacmanDirection()
+            msg.Direction = PacmanDirection.W
+            self.write(msg, MsgType.PACMAN_DIRECTION)
 
     def msg_received(self, msg, msg_type):
         pass
 
 def main():
+    print("Running fake AI module")
     module = FakeAiModule(ADDRESS, PORT)
     module.run()
 
