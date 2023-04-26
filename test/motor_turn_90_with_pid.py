@@ -51,12 +51,15 @@ range_upper = TARGET_ANGLE + 10
 range_lower = TARGET_ANGLE - 10
 print("Range: "+ str(range_lower) + ", " + str(range_upper))       
 
-# TODO: Both motors are going forward, need to have one going backwards
-#       Not stopping at 90 if START_ANGLE is ~360 due to inaccurate readings
+# TODO: 
 while True:
     current_angle = sensor.euler[0]
     if current_angle is None:
         print("none :(")
+    elif current_angle < 0:
+        current_angle = 0
+    elif current_angle > 360:
+        current_angle = 360
     else:
         if current_angle < TARGET_ANGLE + 2 and current_angle > TARGET_ANGLE - 2:
             print("I am in range!", current_angle)
