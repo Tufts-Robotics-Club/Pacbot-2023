@@ -1,4 +1,4 @@
-from gpiozero import PhaseEnableMotor, RotaryEncoder
+from gpiozero import PhaseEnableMotor#, RotaryEncoder
 from time import sleep
 import time
 import board
@@ -15,8 +15,8 @@ sensor = adafruit_bno055.BNO055_I2C(tca[0])
 
 motor1 = PhaseEnableMotor(27, 22)
 motor2 = PhaseEnableMotor(5, 6)
-rotar1 = RotaryEncoder(23, 24, max_steps=0)
-rotar2 = RotaryEncoder(14, 15, max_steps=0)
+#rotar1 = RotaryEncoder(23, 24, max_steps=0)
+#rotar2 = RotaryEncoder(14, 15, max_steps=0)
 
 print("Start Euler angle: {}".format(sensor.euler))  
 
