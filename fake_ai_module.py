@@ -17,8 +17,8 @@ class FakeAiModule(rm.ProtoModule):
 
     def tick(self):
         self.count += 1
-        print ("Counting:", self.count)
         if self.count % 500 == 0:
+            print("Sending message...")
             self.write(PacmanDirection(direction=PacmanDirection.W), MsgType.PACMAN_DIRECTION)
 
     def msg_received(self, msg, msg_type):
