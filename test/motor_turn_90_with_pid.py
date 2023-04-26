@@ -76,9 +76,9 @@ while True:
         else:
             motor1.forward(control)
             motor2.backward(control)
-    sleep(0.01)
+    sleep(0.1)
 
-        
+   
     # if (sensor.euler[0] > 180):
     #     DELTA = sensor.euler[0] - OFFSET
     # else:
@@ -86,7 +86,7 @@ while True:
 
     # print("Current Euler angle: {}".format(sensor.euler))      
     # print("Delta: " + str(DELTA))        
-    sleep(0.1)
+
 # motor1.stop()
 # motor2.stop()
 
