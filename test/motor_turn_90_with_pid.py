@@ -22,7 +22,7 @@ motor2 = PhaseEnableMotor(5, 6)
 print("Start Euler angle: {}".format(sensor.euler))  
 
 MAX_ANGLE = 360
-TURN_ANGLE = 45
+TURN_ANGLE = 90
 
 START_ANGLE = sensor.euler[0] #ideally 0, often 359
 # TARGET_ANGLE = round(START_ANGLE + TURN_ANGLE)
@@ -48,7 +48,6 @@ range_upper = TARGET_ANGLE + 2
 range_lower = TARGET_ANGLE - 2
 print("Range: "+ str(range_lower) + ", " + str(range_upper))       
 
-# TODO: stops at target angle, then segfault
 while True:
     current_angle = sensor.euler[0]
     if current_angle is None:
