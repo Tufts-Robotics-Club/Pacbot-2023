@@ -62,6 +62,7 @@ while True:
             print("I am in range!", current_angle)
             motor1.stop()
             motor2.stop()
+            print("Stop motor")
             break
         control = pid(current_angle)
         print("control:", control, "angle:", current_angle, "target:", TARGET_ANGLE)
