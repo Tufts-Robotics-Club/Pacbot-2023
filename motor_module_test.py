@@ -24,7 +24,7 @@ class MotorModule(rm.ProtoModule):
         self.TURN_SPEED = 1.0
         self.TURN_DISTANCE = 1.0
         self.CATCHUP_MODIFIER = 1.1
-        self.MOVE_SPEED = 1.0
+        self.MOVE_SPEED = 0.5
         # 6 inches / (Wheel diameter * pi * 1 in / 25.2 mm)
         self.MOVE_ROTATIONS = 6 / (32 * math.pi / 25.4)
 
