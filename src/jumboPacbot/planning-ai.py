@@ -49,7 +49,7 @@ class Planner:
 
 	def plan(self):
 
-		if self.pacbotLocation in self.junctions:
+		if self.is_junction(self.pacbotLocation):
 			# Pacbot is at a junction
 			
 			if self.ghostsScared:
