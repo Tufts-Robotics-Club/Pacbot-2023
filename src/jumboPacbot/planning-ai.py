@@ -39,12 +39,13 @@ class Planner:
 
 	def manhattan_distance(self, a: Tuple[int, int], b: Tuple[int, int]) -> int:
 		return abs(a[0] - b[0]) + abs(a[1] - b[1])
+	
 	def is_valid(self, location: Tuple[int,int]) -> bool:
 		row, col = location
 		return row >=0 and row<len(self.board) and col >=0 and col<len(self.board[0]) and self.board[row][col] != '#' and self.board[row][col] != 'X'
 	
 	def init_board(self):
-		with open('board.csv', newline='') as csvfile:
+		with open('board.csv') as csvfile:
 			self.board = np.array(list(csv.reader(csvfile)))
 
 	def plan(self):
