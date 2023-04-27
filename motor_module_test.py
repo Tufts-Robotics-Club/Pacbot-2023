@@ -129,9 +129,12 @@ class MotorModule(rm.ProtoModule):
 
         # Set motor speeds
         if self.left_target > self.left_encoder.steps:
+            print("hi")
             self.left_motor.forward(left_speed)
         elif self.left_target < self.left_encoder.steps:
-            self.left_motor.backward(left_speed)
+            print("bye")
+            self.left_motor.forward(left_speed)
+            #self.left_motor.backward(left_speed)
         else:
             self.left_motor.stop()
         if self.right_target > self.right_encoder.steps:
