@@ -129,6 +129,7 @@ class MotorModule(rm.ProtoModule):
 
         # Set motor speeds
         if self.left_target > self.left_encoder.steps:
+            print(left_speed)
             print("hi")
             self.left_motor.forward(left_speed)
         elif self.left_target < self.left_encoder.steps:
@@ -140,7 +141,6 @@ class MotorModule(rm.ProtoModule):
         if self.right_target > self.right_encoder.steps:
             self.right_motor.forward(right_speed)
         elif self.right_target < self.right_encoder.steps:
-            print(right_speed)  
             self.right_motor.backward(right_speed)
         else:
             self.right_motor.stop()
@@ -152,9 +152,9 @@ class MotorModule(rm.ProtoModule):
         # Set motors based on drive mode
 
     def msg_received(self, msg, msg_type):
-        print("Message received!")
         # Takes the message and adds it to the queue
         if msg_type == MsgType.PACMAN_DIRECTION:
+            print("Message received!")
             self.add_action(msg.direction)
 
 
