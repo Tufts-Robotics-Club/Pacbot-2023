@@ -98,8 +98,10 @@ class MotorModule(rm.ProtoModule):
         # Set various variables
         left_remaining = abs(self.left_target - self.left_encoder.steps)
         right_remaining = abs(self.left_target - self.left_encoder.steps)
-        left_direction = -1 if self.left_target < self.left_encoder.steps else 1
-        right_direction = -1 if self.right_target < self.right_encoder.steps else 1
+        #left_direction = -1 if self.left_target < self.left_encoder.steps else 1
+        #right_direction = -1 if self.right_target < self.right_encoder.steps else 1
+        left_direction = 1
+        right_direction = 1
         left_speed = 0
         right_speed = 0
 
@@ -135,7 +137,7 @@ class MotorModule(rm.ProtoModule):
         if self.right_target > self.right_encoder.steps:
             self.right_motor.forward(right_speed)
         elif self.right_target < self.right_encoder.steps:
-            print(right_speed)
+            print(right_speed)  
             self.right_motor.backward(right_speed)
         else:
             self.right_motor.stop()
