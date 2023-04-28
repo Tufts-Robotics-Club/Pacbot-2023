@@ -20,11 +20,11 @@ class FakeAiModule(rm.ProtoModule):
             "S": 3,
             "D": 4
         }
-        self.action_queue = [WASD_to_direction[action] for action in input("Enter actions: ").split(" ")]
+        self.action_queue = [WASD_to_direction[action.lower()] for action in input("Enter actions: ").split(" ")]
 
     def tick(self):
         self.count += 1
-        if self.count == 200 and len(self.action_queue) > 0:
+        if self.count % 200 == 0 and len(self.action_queue) > 0:
             print("Sending message", self.action_queue[0])
             msg = PacmanDirection()
             msg.direction = self.action_queue[0]
