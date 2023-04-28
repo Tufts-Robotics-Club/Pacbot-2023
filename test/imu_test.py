@@ -13,7 +13,7 @@ i2c = board.I2C()  # uses board.SCL and board.SDA
 tca = adafruit_tca9548a.TCA9548A(i2c)
 
 # imu (attached to port 0 of multiplexer)
-sensor = adafruit_bno055.BNO055_I2C(tca[0])
+sensor = adafruit_bno055.BNO055_I2C(tca[1])
 
 last_val = 0xFFFF
 
