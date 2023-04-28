@@ -104,8 +104,12 @@ class MotorModule(rm.ProtoModule):
         if left_remaining < self.STOPPING_ERROR:
             # Reached target
             left_speed = 0
+        else:
+            left_speed = self.MOVE_SPEED
         if right_remaining < self.STOPPING_ERROR:
             right_speed = 0
+        else:
+            right_speed = self.MOVE_SPEED
         
         # If reached target (both)
         if left_remaining < self.STOPPING_ERROR and right_remaining < self.STOPPING_ERROR:
@@ -113,10 +117,7 @@ class MotorModule(rm.ProtoModule):
             if len(self.action_queue) > 0:
                 self._execute(self.action_queue[0])
                 del self.action_queue[0]
-        else:
-            # Need to move
-            left_speed = self.MOVE_SPEED
-            right_speed = self.MOVE_SPEED
+
         
         # Modify left and right speeds if difference is greater than error
         if left_remaining < right_remaining - self.DIFFERENCE_ERROR:
