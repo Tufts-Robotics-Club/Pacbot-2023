@@ -5,6 +5,7 @@ import csv
 import os
 from queue import PriorityQueue
 from messages import MsgType, message_buffers, PacmanDirection, LightState
+from variables import *
 
 ADDRESS = os.environ.get("BIND_ADDRESS", "localhost")    # address of game engine server
 PORT = os.environ.get("BIND_PORT", 11295)               # port game engine server is listening on
@@ -12,6 +13,10 @@ PORT = os.environ.get("BIND_PORT", 11295)               # port game engine serve
 SPEED = 1.0
 
 FREQUENCY = SPEED * game_frequency
+
+FRUIT_POS = (13, 13)
+
+SQUARES_PER_SEC = SPEED * FREQUENCY
 
 BASE_TICK_COUNTER = 1
 
@@ -207,6 +212,26 @@ class Planner:
 
 		return np.sum([self.board[neighbor] != '#' for neighbor in neighbors]) > 2
 
+	def update_fruit_timer(self):
+		if self.fruit_timer > 0:
+			self.fruit_timer -= 1
+		if self.fruit_timer == 0:
+			self.goal = None
+
+	def send_data(self):
+		msg = message_buffers["pacman"]
+		msg.pacman.x = self.pacbot_pos[0]
+		msg.pacman.y = self.pacbot_pos[1]
+		msg.pacman.direction = self.char_to_direction[str(self.direction)]
+		msg.send()
+
+	def update_ghosts_scared(self):
+		for ghost in self.state.ghosts:
+			if ghost.FRIGHTENED_TIME > 0:
+				self.ghostsScared = True
+				return
+		self.ghostsScared = False
+
 	def run(self) -> List[Tuple[int, int]]:
 		frontier = PriorityQueue()
 		frontier.put(self.startLocation, 0)
@@ -215,7 +240,7 @@ class Planner:
 # Testing the Planner class
 	
 # Create an instance of the Planner class
-planner = Planner((23,13), (23,13), [(1,1), (2,2)])
+planner = Planner((pacbot_starting_pos[0], pacbot_starting_pos[1]), (pacbot_starting_pos[0], pacbot_starting_pos[1]), [(1,1), (2,2)])
 planner.init_board()
 
 # Call the plan() method to test it
