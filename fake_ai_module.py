@@ -17,7 +17,7 @@ class FakeAiModule(rm.ProtoModule):
 
     def tick(self):
         self.count += 1
-        if count == 200:
+        if self.count == 200:
             print("Sending message...")
             msg = PacmanDirection()
             msg.direction = 1
