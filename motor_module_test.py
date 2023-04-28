@@ -17,7 +17,7 @@ class MotorModule(rm.ProtoModule):
         self.FREQUENCY = 100
 
         # How far from the target distance is acceptible before stopping
-        self.STOPPING_ERROR = 0.1
+        self.STOPPING_ERROR = 5
         # How much the two wheels can be different before we try to compensate
         self.DIFFERENCE_ERROR = 0.1
 
@@ -96,6 +96,8 @@ class MotorModule(rm.ProtoModule):
     def tick(self):
         
         # Set various variables
+        print(self.left_target, self.left_encoder.steps)
+        print(self.right_target, self.right_encoder.steps)
         left_remaining = abs(self.left_target - self.left_encoder.steps)
         right_remaining = abs(self.left_target - self.left_encoder.steps)
         #left_direction = -1 if self.left_target < self.left_encoder.steps else 1
@@ -129,11 +131,8 @@ class MotorModule(rm.ProtoModule):
 
         # Set motor speeds
         if self.left_target > self.left_encoder.steps:
-            print(left_speed)
-            print("hi")
             self.left_motor.forward(left_speed)
         elif self.left_target < self.left_encoder.steps:
-            print("bye")
             self.left_motor.forward(left_speed)
             #self.left_motor.backward(left_speed)
         else:
