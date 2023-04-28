@@ -26,7 +26,7 @@ class MotorModule(rm.ProtoModule):
         self.CATCHUP_MODIFIER = 1.1
         self.MOVE_SPEED = 0.5
         # 6 inches / (Wheel diameter * pi * 1 in / 25.2 mm)
-        self.MOVE_ROTATIONS = 6 / (32 * math.pi / 25.4)
+        self.MOVE_ROTATIONS = 10 # 6 / (32 * math.pi / 25.4)
 
         self.LEFT_MOTOR_PINS = (19, 26)
         self.RIGHT_MOTOR_PINS = (5, 6)
