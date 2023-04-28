@@ -20,7 +20,7 @@ class FakeAiModule(rm.ProtoModule):
         if self.count == 200:
             print("Sending message...")
             msg = PacmanDirection()
-            msg.direction = 0
+            msg.direction = 1
             self.write(msg.SerializeToString(), MsgType.PACMAN_DIRECTION)
 
     def msg_received(self, msg, msg_type):
