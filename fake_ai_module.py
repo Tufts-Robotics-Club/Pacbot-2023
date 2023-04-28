@@ -16,11 +16,12 @@ class FakeAiModule(rm.ProtoModule):
         self.count = 0
 
     def tick(self):
-        input()
-        print("Sending message...")
-        msg = PacmanDirection()
-        msg.direction = 1
-        self.write(msg.SerializeToString(), MsgType.PACMAN_DIRECTION)
+        self.count += 1
+        if count == 200:
+            print("Sending message...")
+            msg = PacmanDirection()
+            msg.direction = 1
+            self.write(msg.SerializeToString(), MsgType.PACMAN_DIRECTION)
 
     def msg_received(self, msg, msg_type):
         pass
