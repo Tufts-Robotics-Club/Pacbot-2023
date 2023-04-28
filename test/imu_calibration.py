@@ -20,13 +20,13 @@ TARGET_CALIBRATION_VAL = 3
 
 
 while True:
-    calibration_status = sensor.get_calibration_status()
+    calibration_status = sensor.calibration_status
     print("Calibration Status (system, gyro, accel, mag): {}".format(calibration_status), "Euler Angle: {}".format(sensor.euler))
 
     if calibration_status[0] == TARGET_CALIBRATION_VAL:
         print("Target reached!")
-        break
+        # break
 
     time.sleep(0.01)
 
-print("final calibration vals", sensor.get_calibration())
+# print("final calibration vals", sensor.get_calibration())
