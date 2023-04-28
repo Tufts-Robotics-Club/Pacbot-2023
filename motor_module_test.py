@@ -125,8 +125,8 @@ class MotorModule(rm.ProtoModule):
         elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
             right_speed *= self.CATCHUP_MODIFIER
 
-        print(f"\x1b[K2 Left: target - {self.left_target} | current - {self.left_encoder.steps} | speed - {left_speed}", end = "\r")
-        print(f"\x1b[K2Right: target - {self.right_target} | current - {self.right_encoder.steps} | speed - {right_speed}", end = "\r")
+        print(f"Left: target - {self.left_target} | current - {self.left_encoder.steps} | speed - {left_speed}")
+        print(f"Right: target - {self.right_target} | current - {self.right_encoder.steps} | speed - {right_speed}")
 
         # Set motor movement based on speed
         if left_speed == 0:
