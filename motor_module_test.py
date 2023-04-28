@@ -95,33 +95,31 @@ class MotorModule(rm.ProtoModule):
     # Main loop
     def tick(self):
         
-        # Set various variables
         print("Left:", self.left_target, self.left_encoder.steps)
         print("Right:", self.right_target, self.right_encoder.steps)
         left_remaining = abs(self.left_target - self.left_encoder.steps)
-        right_remaining = abs(self.left_target - self.left_encoder.steps)
-        #left_direction = -1 if self.left_target < self.left_encoder.steps else 1
-        #right_direction = -1 if self.right_target < self.right_encoder.steps else 1
-        left_direction = 1
-        right_direction = 1
+        right_remaining = abs(self.right_target - self.right_encoder.steps)
         left_speed = 0
         right_speed = 0
 
-        # If reached target
-        if left_remaining < self.STOPPING_ERROR and right_remaining < self.STOPPING_ERROR:
+
+        # Checking target reached independently
+        if left_remaining < self.STOPPING_ERROR:
             # Reached target
             left_speed = 0
+        if right_remaining < self.STOPPING_ERROR:
             right_speed = 0
-
+        
+        # If reached target (both)
+        if left_remaining < self.STOPPING_ERROR and right_remaining < self.STOPPING_ERROR:
             # Get new action from queue
             if len(self.action_queue) > 0:
                 self._execute(self.action_queue[0])
                 del self.action_queue[0]
-            
         else:
             # Need to move
-            left_speed = self.MOVE_SPEED * left_direction
-            right_speed = self.MOVE_SPEED * right_direction
+            left_speed = self.MOVE_SPEED
+            right_speed = self.MOVE_SPEED
         
         # Modify left and right speeds if difference is greater than error
         if left_remaining < right_remaining - self.DIFFERENCE_ERROR:
@@ -129,20 +127,20 @@ class MotorModule(rm.ProtoModule):
         elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
             right_speed *= self.CATCHUP_MODIFIER
 
-        # Set motor speeds
-        if self.left_target > self.left_encoder.steps:
-            self.left_motor.forward(left_speed)
-        elif self.left_target < self.left_encoder.steps:
-            self.left_motor.forward(left_speed)
-            #self.left_motor.backward(left_speed)
-        else:
+        # Set motor movement based on speed
+        if left_speed == 0:
             self.left_motor.stop()
-        if self.right_target > self.right_encoder.steps:
-            self.right_motor.forward(right_speed)
-        elif self.right_target < self.right_encoder.steps:
-            self.right_motor.backward(right_speed)
+        elif self.left_target > self.left_encoder.steps:
+            self.left_motor.forward(left_speed)
         else:
+            self.left_motor.backward(left_speed)
+        if right_speed == 0:
             self.right_motor.stop()
+        elif self.right_target > self.right_encoder.steps:
+            self.right_motor.forward(right_speed)
+        else:
+            self.right_motor.backward(right_speed)
+        
         
         # in the drive straight funtion we want to check if one wheel has gone further than the other
         # one wheel has gone further than the other we should increase the power of the other motor so the robot drives straight
