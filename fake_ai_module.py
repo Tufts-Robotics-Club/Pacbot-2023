@@ -14,13 +14,21 @@ class FakeAiModule(rm.ProtoModule):
         self.subscriptions = [MsgType.PACMAN_DIRECTION]
         super().__init__(addr, port, message_buffers, MsgType, self.FREQUENCY, self.subscriptions)
         self.count = 0
+        WASD_to_direction = {
+            "W": 1,
+            "A": 2,
+            "S": 3,
+            "D": 4
+        }
+        self.action_queue = [WASD_to_direction[action] for action in input("Enter actions: ").split(" ")]
 
     def tick(self):
         self.count += 1
-        if self.count == 200:
-            print("Sending message...")
+        if self.count == 200 and len(self.action_queue) > 0:
+            print("Sending message", self.action_queue[0])
             msg = PacmanDirection()
-            msg.direction = 1
+            msg.direction = self.action_queue[0]
+            self.action_queue = self.action_queue[1:]
             self.write(msg.SerializeToString(), MsgType.PACMAN_DIRECTION)
 
     def msg_received(self, msg, msg_type):
