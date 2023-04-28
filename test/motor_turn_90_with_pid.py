@@ -35,11 +35,12 @@ TARGET_ANGLE = (START_ANGLE + TURN_ANGLE) % 360 #90
 print("Target angle: "+ str(TARGET_ANGLE))       
 
 OFFSET = 0
-if (START_ANGLE > 90):
-    OFFSET = 360
+if (START_ANGLE > TARGET_ANGLE):
+    OFFSET = 360 - START_ANGLE
 
-DELTA = START_ANGLE - OFFSET
+TARGET_ANGLE = TARGET_ANGLE + OFFSET
 
+# DELTA = START_ANGLE - OFFSET
 
 pid = PID(0.005, 0, 0, setpoint=TARGET_ANGLE)
 pid.output_limits = (-1, 1)
@@ -49,7 +50,7 @@ range_lower = TARGET_ANGLE - 2
 print("Range: "+ str(range_lower) + ", " + str(range_upper))       
 
 while True:
-    current_angle = sensor.euler[0]
+    current_angle = sensor.euler[0] + OFFSET
     if current_angle is None:
         print("none :(")
     elif current_angle < 0:
