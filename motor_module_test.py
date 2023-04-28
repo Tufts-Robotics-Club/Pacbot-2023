@@ -22,8 +22,6 @@ class MotorModule(rm.ProtoModule):
         self.STOPPING_ERROR = 1
         # How much the two wheels can be different before we try to compensate
         self.DIFFERENCE_ERROR = 0.1
-
-        
         
         self.MOVE_MODIFIER = 1.0
         # 6 inches / (Wheel diameter * pi * 1 in / 25.2 mm)
@@ -34,12 +32,19 @@ class MotorModule(rm.ProtoModule):
         self.RIGHT_MOTOR_PINS = (5, 6)
         self.LEFT_ENCODER_PINS = (23, 24)
         self.RIGHT_ENCODER_PINS = (14, 15)
-        self.PID_CONSTANTS = (1.0, 0.1, 0.05)
+        self.PID_FORWARD_CONSTANTS = (1.0, 0.1, 0.05)
+        self.PID_TURN_CONSTANTS = (1.0, 0.1, 0.05)
 
         # PIDs
-        self.left_pid = PID(*self.PID_CONSTANTS)
-        self.right_pid = PID(*self.PID_CONSTANTS)
-        
+        self.left_pid = PID(*self.PID_FORWARD_CONSTANTS)
+        self.right_pid = PID(*self.PID_FORWARD_CONSTANTS)
+        self.turn_pid = PID(*self.PID_TURN_CONSTANTS)
+        self.left_pid.sample_time = 1 / self.FREQUENCY
+        self.right_pid.sample_time = 1 / self.FREQUENCY
+        self.turn_pid.sample_time = 1 / self.FREQUENCY
+        self.left_pid.output_limits = (-1 / self.MOVE_MODIFIER, 1 / self.MOVE_MODIFIER)
+        self.right_pid.output_limits = (-1 / self.MOVE_MODIFIER, 1 / self.MOVE_MODIFIER)
+        self.turn_pid.output_limits = (-1 / self.MOVE_MODIFIER, 1 / self.MOVE_MODIFIER)
 
         # Need to set up connections and stuff
         self.subscriptions = [MsgType.PACMAN_DIRECTION]
@@ -54,7 +59,7 @@ class MotorModule(rm.ProtoModule):
 
         self.left_pid.setpoint = self.left_encoder.steps
         self.right_pid.setpoint = self.right_encoder.steps
-        self.action_queue = []
+        self.turn_pid.setpoint = 0
 
         self.current_direction = Direction.W
         self.mode = Mode.stop
@@ -62,8 +67,8 @@ class MotorModule(rm.ProtoModule):
         
     # Turns to the the increments * 90 degrees
     def _turn_real(self, increments: int):
-        self.left_target += self.TURN_DISTANCE * increments
-        self.right_target -= self.TURN_DISTANCE * increments
+        self.mode = Mode.turn
+        self.turn_pid.setpoint += increments * self.TURN_DISTANCE
     
     # Based on current direction, uses _turn_real to turn to the given direction
     def _turn(self, new_direction: Direction):
@@ -112,17 +117,18 @@ class MotorModule(rm.ProtoModule):
 
         # If reached target (both)
         if left_remaining < self.STOPPING_ERROR and right_remaining < self.STOPPING_ERROR:
-            # Get new action from queue
-            if len(self.action_queue) > 0:
-                self._execute(self.action_queue[0])
-                del self.action_queue[0]
-            else:
-                return
+            self.mode = Mode.stop
 
-        if self.mode == Mode.forward:
+        
+        if self.mode == Mode.stop:
+            self.left_motor.stop()
+            self.right_motor.stop()
+        elif self.mode == Mode.turn:
+            pass
+        elif self.mode == Mode.forward:
             # Get speed from PID
-            left_speed = self.left_pid(self.left_encoder.steps)
-            right_speed = self.right_pid(self.right_encoder.steps)
+            left_speed = self.left_pid(self.left_encoder.steps) * self.MOVE_MODIFIER
+            right_speed = self.right_pid(self.right_encoder.steps) * self.MOVE_MODIFIER
 
             # Modify left and right speeds if difference is greater than error
             if left_remaining < right_remaining - self.DIFFERENCE_ERROR:
@@ -130,7 +136,7 @@ class MotorModule(rm.ProtoModule):
             elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
                 right_speed *= self.CATCHUP_MODIFIER
 
-            print(f"   Left: target {str(self.left_target).rjust(5)} | current {str(self.left_encoder.steps).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.right_target).rjust(5)} | current {str(self.right_encoder.steps).rjust(5)} | speed {str(right_speed).rjust(5)}")
+            print(f"   Left: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.left_encoder.steps).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.right_encoder.steps).rjust(5)} | speed {str(right_speed).rjust(5)}")
 
             # Set motor movement based on speed
             if left_speed == 0:
@@ -155,10 +161,9 @@ class MotorModule(rm.ProtoModule):
 
     def msg_received(self, msg, msg_type):
         # Takes the message and adds it to the queue
-        print(msg.direction)
-        if msg_type == MsgType.PACMAN_DIRECTION:
+        if self.mode == Mode.stop and msg_type == MsgType.PACMAN_DIRECTION:
             print("Message received!")
-            self.add_action(msg.direction)
+            self._execute(msg.direction)
 
 
 def main():

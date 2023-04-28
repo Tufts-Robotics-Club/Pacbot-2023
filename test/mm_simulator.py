@@ -1,5 +1,6 @@
 from enum import IntEnum
 
+
 class SimulatedMotor():
     def __init__(self, encoder):
         self.encoder = encoder
