@@ -15,10 +15,10 @@ class FakeAiModule(rm.ProtoModule):
         super().__init__(addr, port, message_buffers, MsgType, self.FREQUENCY, self.subscriptions)
         self.count = 0
         WASD_to_direction = {
-            "W": 1,
-            "A": 2,
-            "S": 3,
-            "D": 4
+            "w": 1,
+            "a": 2,
+            "s": 3,
+            "d": 4
         }
         self.action_queue = [WASD_to_direction[action.lower()] for action in input("Enter actions: ").split(" ")]
 
