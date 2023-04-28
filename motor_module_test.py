@@ -96,8 +96,8 @@ class MotorModule(rm.ProtoModule):
     def tick(self):
         
         # Set various variables
-        print("Left:", self.left_target, self.left_encoder.steps)
-        print("Right:", self.right_target, self.right_encoder.steps)
+        # print("Left:", self.left_target, self.left_encoder.steps)
+        # print("Right:", self.right_target, self.right_encoder.steps)
         left_remaining = abs(self.left_target - self.left_encoder.steps)
         right_remaining = abs(self.left_target - self.left_encoder.steps)
         #left_direction = -1 if self.left_target < self.left_encoder.steps else 1
@@ -152,6 +152,7 @@ class MotorModule(rm.ProtoModule):
 
     def msg_received(self, msg, msg_type):
         # Takes the message and adds it to the queue
+        print(msg.direction)
         if msg_type == MsgType.PACMAN_DIRECTION:
             print("Message received!")
             self.add_action(msg.direction)
