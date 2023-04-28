@@ -5,3 +5,5 @@
 */.vscode/*
 *.out*
 */.conda/*
+.conda/*
+.conda/share/terminfo/p/*
