@@ -5,6 +5,9 @@ from enum import IntEnum
 import math
 import os
 from simple_pid import PID
+import board
+import adafruit_bno055
+import adafruit_tca9548a
 
 ADDRESS = os.environ.get("LOCAL_ADDRESS", "localhost")
 PORT = os.environ.get("LOCAL_PORT", 11295)
@@ -20,10 +23,12 @@ class MotorModule(rm.ProtoModule):
 
         # How far from the target distance is acceptible before stopping
         self.STOPPING_ERROR = 1
+        self.TURN_ERROR = 1
         # How much the two wheels can be different before we try to compensate
         self.DIFFERENCE_ERROR = 0.1
         
         self.MOVE_MODIFIER = 1.0
+        self.TURN_MODIFIER = 1.0
         # 6 inches / (Wheel diameter * pi * 1 in / 25.2 mm)
         self.MOVE_ROTATIONS = 10 # 6 / (32 * math.pi / 25.4)
         self.TURN_DISTANCE = 1.0
@@ -44,7 +49,7 @@ class MotorModule(rm.ProtoModule):
         self.turn_pid.sample_time = 1 / self.FREQUENCY
         self.left_pid.output_limits = (-1 / self.MOVE_MODIFIER, 1 / self.MOVE_MODIFIER)
         self.right_pid.output_limits = (-1 / self.MOVE_MODIFIER, 1 / self.MOVE_MODIFIER)
-        self.turn_pid.output_limits = (-1 / self.MOVE_MODIFIER, 1 / self.MOVE_MODIFIER)
+        self.turn_pid.output_limits = (-1 / self.TURN_MODIFIER, 1 / self.TURN_MODIFIER)
 
         # Need to set up connections and stuff
         self.subscriptions = [MsgType.PACMAN_DIRECTION]
@@ -56,6 +61,10 @@ class MotorModule(rm.ProtoModule):
         # Encoders
         self.left_encoder = RotaryEncoder(*self.LEFT_ENCODER_PINS, max_steps=0)
         self.right_encoder = RotaryEncoder(*self.RIGHT_ENCODER_PINS, max_steps=0)
+        # Gyro
+        i2c = board.I2C()
+        tca = adafruit_tca9548a.TCA9548A(i2c)
+        self.sensor = adafruit_bno055.BNO055_I2C(tca[0]) 
 
         self.left_pid.setpoint = self.left_encoder.steps
         self.right_pid.setpoint = self.right_encoder.steps
@@ -63,34 +72,29 @@ class MotorModule(rm.ProtoModule):
 
         self.current_direction = Direction.W
         self.mode = Mode.stop
-
         
-    # Turns to the the increments * 90 degrees
-    def _turn_real(self, increments: int):
-        self.mode = Mode.turn
-        self.turn_pid.setpoint += increments * self.TURN_DISTANCE
     
     # Based on current direction, uses _turn_real to turn to the given direction
     def _turn(self, new_direction: Direction):
+        self.turn_pid.reset()
         turnValue = int(self.current_direction) - int(new_direction)
         # If turnValue is 0, we don't need to turn
         if turnValue == 0:
             return
         # If turnValue is 2 or -2, we need to turn 180 degrees
         elif turnValue == 2 or turnValue == -2:
-            self._turn_real(2)
+            self.turn_pid.setpoint += 2 * self.TURN_DISTANCE * 90
         # If turnValue is 1 or -3, we need to turn 90 degrees
         elif turnValue == 1 or turnValue == -3:
-            self._turn_real(1)
+            self.turn_pid.setpoint += 1 * self.TURN_DISTANCE * 90
         # If turnValue is -1 or 3, we need to turn -90 degrees
         elif turnValue == -1 or turnValue == 3:
-            self._turn_real(-1)
+            self.turn_pid.setpoint += -1 * self.TURN_DISTANCE * 90
         # Set current direction to new direction
         self.current_direction = new_direction
 
     # Moves forward one square
     def _forward(self):
-        self.mode = Mode.forward
         self.left_pid.setpoint += self.MOVE_ROTATIONS
         self.right_pid.setpoint -= self.MOVE_ROTATIONS
 
@@ -98,6 +102,7 @@ class MotorModule(rm.ProtoModule):
     def _execute(self, direction: Direction):
         self.left_pid.reset()
         self.right_pid.reset()
+        self.mode = Mode.turn
         # Turn
         self._turn(direction)
 
@@ -118,13 +123,28 @@ class MotorModule(rm.ProtoModule):
         # If reached target (both)
         if left_remaining < self.STOPPING_ERROR and right_remaining < self.STOPPING_ERROR:
             self.mode = Mode.stop
-
         
         if self.mode == Mode.stop:
             self.left_motor.stop()
             self.right_motor.stop()
         elif self.mode == Mode.turn:
-            pass
+            # If close enough, stop turning
+            if abs(self.sensor.euler[0] - self.turn_pid.setpoint) < self.TURN_ERROR:
+                self.mode = Mode.forward
+                self.left_motor.stop()
+                self.right_motor.stop()
+                return
+
+            # Get speed from PID
+            speed = self.turn_pid(self.sensor.euler[0])
+
+            if speed < 0:
+                self.left_motor.forward(-speed)
+                self.right_motor.backward(-speed)
+            else:
+                self.left_motor.backward(speed)
+                self.right_motor.forward(speed)
+            
         elif self.mode == Mode.forward:
             # Get speed from PID
             left_speed = self.left_pid(self.left_encoder.steps) * self.MOVE_MODIFIER
