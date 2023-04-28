@@ -94,9 +94,6 @@ class MotorModule(rm.ProtoModule):
 
     # Main loop
     def tick(self):
-        
-        print("Left:", self.left_target, self.left_encoder.steps)
-        print("Right:", self.right_target, self.right_encoder.steps)
         left_remaining = abs(self.left_target - self.left_encoder.steps)
         right_remaining = abs(self.right_target - self.right_encoder.steps)
         left_speed = 0
@@ -126,6 +123,9 @@ class MotorModule(rm.ProtoModule):
             left_speed *= self.CATCHUP_MODIFIER
         elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
             right_speed *= self.CATCHUP_MODIFIER
+
+        print(f"Left: target - {self.left_target} | current - {self.left_encoder.steps} | speed - {left_speed}")
+        print(f"Right: target - {self.right_target} | current - {self.right_encoder.steps} | speed - {right_speed}")
 
         # Set motor movement based on speed
         if left_speed == 0:
