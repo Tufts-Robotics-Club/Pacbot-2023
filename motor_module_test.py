@@ -4,11 +4,13 @@ from gpiozero import PhaseEnableMotor, RotaryEncoder
 from enum import IntEnum
 import math
 import os
+from simple_pid import PID
 
 ADDRESS = os.environ.get("LOCAL_ADDRESS", "localhost")
 PORT = os.environ.get("LOCAL_PORT", 11295)
 
 Direction = IntEnum("Direction", ["W", "A", "S", "D"])
+Mode = IntEnum("Mode", ["forward turn stop"])
 
 class MotorModule(rm.ProtoModule):
     def __init__(self, addr, port):
@@ -21,18 +23,23 @@ class MotorModule(rm.ProtoModule):
         # How much the two wheels can be different before we try to compensate
         self.DIFFERENCE_ERROR = 0.1
 
-        self.TURN_SPEED = 1.0
-        self.TURN_DISTANCE = 1.0
-        self.CATCHUP_MODIFIER = 1.1
-        self.MOVE_SPEED = 0.5
+        
+        
+        self.MOVE_MODIFIER = 1.0
         # 6 inches / (Wheel diameter * pi * 1 in / 25.2 mm)
         self.MOVE_ROTATIONS = 10 # 6 / (32 * math.pi / 25.4)
-
+        self.TURN_DISTANCE = 1.0
+        self.CATCHUP_MODIFIER = 1.1
         self.LEFT_MOTOR_PINS = (19, 26)
         self.RIGHT_MOTOR_PINS = (5, 6)
         self.LEFT_ENCODER_PINS = (23, 24)
         self.RIGHT_ENCODER_PINS = (14, 15)
+        self.PID_CONSTANTS = (1.0, 0.1, 0.05)
 
+        # PIDs
+        self.left_pid = PID(*self.PID_CONSTANTS)
+        self.right_pid = PID(*self.PID_CONSTANTS)
+        
 
         # Need to set up connections and stuff
         self.subscriptions = [MsgType.PACMAN_DIRECTION]
@@ -45,11 +52,12 @@ class MotorModule(rm.ProtoModule):
         self.left_encoder = RotaryEncoder(*self.LEFT_ENCODER_PINS, max_steps=0)
         self.right_encoder = RotaryEncoder(*self.RIGHT_ENCODER_PINS, max_steps=0)
 
-        self.left_target = self.left_encoder.steps
-        self.right_target = self.right_encoder.steps
+        self.left_pid.setpoint = self.left_encoder.steps
+        self.right_pid.setpoint = self.right_encoder.steps
         self.action_queue = []
 
         self.current_direction = Direction.W
+        self.mode = Mode.stop
 
         
     # Turns to the the increments * 90 degrees
@@ -77,11 +85,14 @@ class MotorModule(rm.ProtoModule):
 
     # Moves forward one square
     def _forward(self):
-        self.left_target += self.MOVE_ROTATIONS
-        self.right_target -= self.MOVE_ROTATIONS
+        self.mode = Mode.forward
+        self.left_pid.setpoint += self.MOVE_ROTATIONS
+        self.right_pid.setpoint -= self.MOVE_ROTATIONS
 
     # Takes a direction, turns to that direction, then moves forward
     def _execute(self, direction: Direction):
+        self.left_pid.reset()
+        self.right_pid.reset()
         # Turn
         self._turn(direction)
 
@@ -94,52 +105,46 @@ class MotorModule(rm.ProtoModule):
 
     # Main loop
     def tick(self):
-        left_remaining = abs(self.left_target - self.left_encoder.steps)
-        right_remaining = abs(self.right_target - self.right_encoder.steps)
+        left_remaining = abs(self.left_pid.setpoint - self.left_encoder.steps)
+        right_remaining = abs(self.right_pid.setpoint - self.right_encoder.steps)
         left_speed = 0
         right_speed = 0
 
-
-        # Checking target reached independently
-        if left_remaining < self.STOPPING_ERROR:
-            # Reached target
-            left_speed = 0
-        else:
-            left_speed = self.MOVE_SPEED
-        if right_remaining < self.STOPPING_ERROR:
-            right_speed = 0
-        else:
-            right_speed = self.MOVE_SPEED
-        
         # If reached target (both)
         if left_remaining < self.STOPPING_ERROR and right_remaining < self.STOPPING_ERROR:
             # Get new action from queue
             if len(self.action_queue) > 0:
                 self._execute(self.action_queue[0])
                 del self.action_queue[0]
+            else:
+                return
 
-        
-        # Modify left and right speeds if difference is greater than error
-        if left_remaining < right_remaining - self.DIFFERENCE_ERROR:
-            left_speed *= self.CATCHUP_MODIFIER
-        elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
-            right_speed *= self.CATCHUP_MODIFIER
+        if self.mode == Mode.forward:
+            # Get speed from PID
+            left_speed = self.left_pid(self.left_encoder.steps)
+            right_speed = self.right_pid(self.right_encoder.steps)
 
-        print(f"   Left: target {str(self.left_target).rjust(5)} | current {str(self.left_encoder.steps).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.right_target).rjust(5)} | current {str(self.right_encoder.steps).rjust(5)} | speed {str(right_speed).rjust(5)}")
+            # Modify left and right speeds if difference is greater than error
+            if left_remaining < right_remaining - self.DIFFERENCE_ERROR:
+                left_speed *= self.CATCHUP_MODIFIER
+            elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
+                right_speed *= self.CATCHUP_MODIFIER
 
-        # Set motor movement based on speed
-        if left_speed == 0:
-            self.left_motor.stop()
-        elif self.left_target > self.left_encoder.steps:
-            self.left_motor.forward(left_speed)
-        else:
-            self.left_motor.backward(left_speed)
-        if right_speed == 0:
-            self.right_motor.stop()
-        elif self.right_target > self.right_encoder.steps:
-            self.right_motor.forward(right_speed)
-        else:
-            self.right_motor.backward(right_speed)
+            print(f"   Left: target {str(self.left_target).rjust(5)} | current {str(self.left_encoder.steps).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.right_target).rjust(5)} | current {str(self.right_encoder.steps).rjust(5)} | speed {str(right_speed).rjust(5)}")
+
+            # Set motor movement based on speed
+            if left_speed == 0:
+                self.left_motor.stop()
+            elif left_speed > 0:
+                self.left_motor.forward(left_speed)
+            else:
+                self.left_motor.backward(-left_speed)
+            if right_speed == 0:
+                self.right_motor.stop()
+            elif right_speed > 0:
+                self.right_motor.forward(right_speed)
+            else:
+                self.right_motor.backward(-right_speed)
         
         
         # in the drive straight funtion we want to check if one wheel has gone further than the other

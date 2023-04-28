@@ -38,8 +38,10 @@ class SimulatedMotorModule():
         self.STOPPING_ERROR = 1
         self.DIFFERENCE_ERROR = 1
         self.CATCHUP_MODIFIER = 1.1
-        self.MOVE_ROTATIONS = 1
+        self.MOVE_ROTATIONS = 10
         self.TURN_DISTANCE = 1
+        self.SLOWING_ERROR = 5
+        self.SLOWING_MODIFIER = 0.2
 
         self.left_encoder = SimulatedEncoder()
         self.right_encoder = SimulatedEncoder()
@@ -108,10 +110,14 @@ class SimulatedMotorModule():
         if left_remaining < self.STOPPING_ERROR:
             # Reached target
             left_speed = 0
+        elif left_remaining < self.SLOWING_ERROR:
+            left_speed = self.MOVE_SPEED * self.SLOWING_MODIFIER
         else:
             left_speed = self.MOVE_SPEED
         if right_remaining < self.STOPPING_ERROR:
             right_speed = 0
+        elif right_remaining < self.SLOWING_ERROR:
+            right_speed = self.MOVE_SPEED * self.SLOWING_MODIFIER
         else:
             right_speed = self.MOVE_SPEED
         
@@ -132,7 +138,7 @@ class SimulatedMotorModule():
         elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
             right_speed *= self.CATCHUP_MODIFIER
 
-        print(f"   Left: target {str(self.left_target).rjust(5)} | current {str(self.left_encoder.steps).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.right_target).rjust(5)} | current {str(self.right_encoder.steps).rjust(5)} | speed {str(right_speed).rjust(5)}")
+        print(f"   Left: target {str(self.left_target).rjust(5)} | current {str(round(self.left_encoder.steps, 2)).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.right_target).rjust(5)} | current {str(round(self.right_encoder.steps, 2)).rjust(5)} | speed {str(right_speed).rjust(5)}")
 
         # Set motor movement based on speed
         if left_speed == 0:
