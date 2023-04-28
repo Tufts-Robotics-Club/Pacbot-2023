@@ -1,4 +1,4 @@
-prefix=/Users/tanaynistala/Developer/Pacbot/.conda
+prefix=/root/Programming_Projects/Pacbot-2023/.conda
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
@@ -8,5 +8,5 @@ Name: OpenSSL-libcrypto
 Description: OpenSSL cryptography library
 Version: 3.0.0
 Libs: -L${libdir} -lcrypto
-Libs.private:  
+Libs.private: -ldl -pthread 
 Cflags: -I${includedir}

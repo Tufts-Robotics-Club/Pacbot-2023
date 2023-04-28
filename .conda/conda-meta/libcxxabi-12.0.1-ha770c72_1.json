@@ -1,0 +1,67 @@
+{
+  "arch": "x86_64",
+  "build": "ha770c72_1",
+  "build_number": 1,
+  "channel": "https://conda.anaconda.org/conda-forge/linux-64",
+  "constrains": [
+    "libcxx 12.0.1.*"
+  ],
+  "depends": [],
+  "extracted_package_dir": "/root/anaconda3/pkgs/libcxxabi-12.0.1-ha770c72_1",
+  "features": "",
+  "files": [
+    "lib/libc++abi.a",
+    "lib/libc++abi.so",
+    "lib/libc++abi.so.1",
+    "lib/libc++abi.so.1.0"
+  ],
+  "fn": "libcxxabi-12.0.1-ha770c72_1.tar.bz2",
+  "license": "Apache-2.0 WITH LLVM-exception",
+  "license_family": "Apache",
+  "link": {
+    "source": "/root/anaconda3/pkgs/libcxxabi-12.0.1-ha770c72_1",
+    "type": 1
+  },
+  "md5": "72e138958a36ed3251cc5141f5f41550",
+  "name": "libcxxabi",
+  "package_tarball_full_path": "/root/anaconda3/pkgs/libcxxabi-12.0.1-ha770c72_1.tar.bz2",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "lib/libc++abi.a",
+        "path_type": "hardlink",
+        "sha256": "76310235a3f147bdda33fa564aa6496a8c2b7603a598e6fc56b8d95c6fcbfd98",
+        "sha256_in_prefix": "76310235a3f147bdda33fa564aa6496a8c2b7603a598e6fc56b8d95c6fcbfd98",
+        "size_in_bytes": 622530
+      },
+      {
+        "_path": "lib/libc++abi.so",
+        "path_type": "softlink",
+        "sha256": "443e625c702e4b454d11e3df89fc08e8caeaacf650908119b07e2d9e23f0a4ac",
+        "size_in_bytes": 334184
+      },
+      {
+        "_path": "lib/libc++abi.so.1",
+        "path_type": "softlink",
+        "sha256": "443e625c702e4b454d11e3df89fc08e8caeaacf650908119b07e2d9e23f0a4ac",
+        "size_in_bytes": 334184
+      },
+      {
+        "_path": "lib/libc++abi.so.1.0",
+        "path_type": "hardlink",
+        "sha256": "443e625c702e4b454d11e3df89fc08e8caeaacf650908119b07e2d9e23f0a4ac",
+        "sha256_in_prefix": "443e625c702e4b454d11e3df89fc08e8caeaacf650908119b07e2d9e23f0a4ac",
+        "size_in_bytes": 334184
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "linux",
+  "requested_spec": "None",
+  "size": 185172,
+  "subdir": "linux-64",
+  "timestamp": 1640852357649,
+  "track_features": "",
+  "url": "https://conda.anaconda.org/conda-forge/linux-64/libcxxabi-12.0.1-ha770c72_1.tar.bz2",
+  "version": "12.0.1"
+}

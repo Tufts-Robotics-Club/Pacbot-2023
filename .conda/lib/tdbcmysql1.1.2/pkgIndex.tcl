@@ -5,4 +5,4 @@ if {[catch {package require Tcl 8.6}]} {
 }
 package ifneeded tdbc::mysql 1.1.2 \
     "[list source [file join $dir tdbcmysql.tcl]]\;\
-    [list load [file join $dir libtdbcmysql1.1.2.dylib] tdbcmysql]"
+    [list load [file join $dir libtdbcmysql1.1.2.so] tdbcmysql]"

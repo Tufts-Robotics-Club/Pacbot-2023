@@ -23,7 +23,7 @@ if {![package vsatisfies [package provide Tcl] 8.4]} {
 # about a thread-disabled interp, instead of the message
 # "can't find package Thread".
 
-package ifneeded Thread 2.8.6 [list load [file join $dir libthread2.8.6.dylib] [string totitle thread]]
+package ifneeded Thread 2.8.6 [list load [file join $dir libthread2.8.6.so] [string totitle thread]]
 
 # package Ttrace uses some support machinery.
 

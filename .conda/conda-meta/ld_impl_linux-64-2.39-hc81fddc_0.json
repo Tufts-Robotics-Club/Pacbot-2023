@@ -1,0 +1,66 @@
+{
+  "arch": "x86_64",
+  "build": "hc81fddc_0",
+  "build_number": 0,
+  "channel": "https://conda.anaconda.org/conda-forge/linux-64",
+  "constrains": [
+    "binutils_impl_linux-64 2.39"
+  ],
+  "depends": [],
+  "extracted_package_dir": "/root/anaconda3/pkgs/ld_impl_linux-64-2.39-hc81fddc_0",
+  "features": "",
+  "files": [
+    "bin/x86_64-conda-linux-gnu-ld",
+    "bin/x86_64-conda_cos6-linux-gnu-ld",
+    "x86_64-conda-linux-gnu/bin/ld",
+    "x86_64-conda_cos6-linux-gnu/bin/ld"
+  ],
+  "fn": "ld_impl_linux-64-2.39-hc81fddc_0.tar.bz2",
+  "license": "GPL-3.0-only",
+  "license_family": "GPL",
+  "link": {
+    "source": "/root/anaconda3/pkgs/ld_impl_linux-64-2.39-hc81fddc_0",
+    "type": 1
+  },
+  "md5": "c2719e2faa7bd7076d3a4b52271e5622",
+  "name": "ld_impl_linux-64",
+  "package_tarball_full_path": "/root/anaconda3/pkgs/ld_impl_linux-64-2.39-hc81fddc_0.tar.bz2",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "bin/x86_64-conda-linux-gnu-ld",
+        "path_type": "hardlink",
+        "sha256": "2b77a4ca5f38d223e44dd71462e6a98ccdcbf08a5f28c1ade1f65fe71c1f9d48",
+        "sha256_in_prefix": "2b77a4ca5f38d223e44dd71462e6a98ccdcbf08a5f28c1ade1f65fe71c1f9d48",
+        "size_in_bytes": 2401328
+      },
+      {
+        "_path": "bin/x86_64-conda_cos6-linux-gnu-ld",
+        "path_type": "softlink",
+        "sha256": "2b77a4ca5f38d223e44dd71462e6a98ccdcbf08a5f28c1ade1f65fe71c1f9d48",
+        "size_in_bytes": 2401328
+      },
+      {
+        "_path": "x86_64-conda-linux-gnu/bin/ld",
+        "path_type": "softlink",
+        "sha256": "2b77a4ca5f38d223e44dd71462e6a98ccdcbf08a5f28c1ade1f65fe71c1f9d48",
+        "size_in_bytes": 2401328
+      },
+      {
+        "_path": "x86_64-conda_cos6-linux-gnu/bin/ld",
+        "path_type": "softlink",
+        "sha256": "2b77a4ca5f38d223e44dd71462e6a98ccdcbf08a5f28c1ade1f65fe71c1f9d48",
+        "size_in_bytes": 2401328
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "linux",
+  "requested_spec": "None",
+  "size": 777544,
+  "subdir": "linux-64",
+  "timestamp": 1665909576573,
+  "track_features": "",
+  "url": "https://conda.anaconda.org/conda-forge/linux-64/ld_impl_linux-64-2.39-hc81fddc_0.tar.bz2",
+  "version": "2.39"
+}

@@ -8,7 +8,7 @@
     "setuptools",
     "wheel"
   ],
-  "extracted_package_dir": "/opt/anaconda3/pkgs/pip-21.3.1-pyhd8ed1ab_0",
+  "extracted_package_dir": "/root/anaconda3/pkgs/pip-21.3.1-pyhd8ed1ab_0",
   "features": "",
   "files": [
     "lib/python3.8/site-packages/pip-21.3.1-py3.9.egg-info/PKG-INFO",
@@ -426,6 +426,8 @@
     "lib/python3.8/site-packages/pip/_vendor/webencodings/tests.py",
     "lib/python3.8/site-packages/pip/_vendor/webencodings/x_user_defined.py",
     "lib/python3.8/site-packages/pip/py.typed",
+    "bin/pip",
+    "bin/pip3",
     "lib/python3.8/site-packages/pip/__pycache__/__init__.cpython-38.pyc",
     "lib/python3.8/site-packages/pip/__pycache__/__main__.cpython-38.pyc",
     "lib/python3.8/site-packages/pip/_internal/__pycache__/__init__.cpython-38.pyc",
@@ -824,22 +826,19 @@
     "lib/python3.8/site-packages/pip/_vendor/webencodings/__pycache__/labels.cpython-38.pyc",
     "lib/python3.8/site-packages/pip/_vendor/webencodings/__pycache__/mklabels.cpython-38.pyc",
     "lib/python3.8/site-packages/pip/_vendor/webencodings/__pycache__/tests.cpython-38.pyc",
-    "lib/python3.8/site-packages/pip/_vendor/webencodings/__pycache__/x_user_defined.cpython-38.pyc",
-    "bin/pip",
-    "bin/pip3"
+    "lib/python3.8/site-packages/pip/_vendor/webencodings/__pycache__/x_user_defined.cpython-38.pyc"
   ],
   "fn": "pip-21.3.1-pyhd8ed1ab_0.tar.bz2",
   "license": "MIT",
   "license_family": "MIT",
   "link": {
-    "source": "/opt/anaconda3/pkgs/pip-21.3.1-pyhd8ed1ab_0",
+    "source": "/root/anaconda3/pkgs/pip-21.3.1-pyhd8ed1ab_0",
     "type": 1
   },
   "md5": "e4fe2a9af78ff11f1aced7e62128c6a8",
   "name": "pip",
   "noarch": "python",
-  "package_tarball_full_path": "/opt/anaconda3/pkgs/pip-21.3.1-pyhd8ed1ab_0.tar.bz2",
-  "package_type": "noarch_python",
+  "package_tarball_full_path": "/root/anaconda3/pkgs/pip-21.3.1-pyhd8ed1ab_0.tar.bz2",
   "paths_data": {
     "paths": [
       {
@@ -3748,6 +3747,14 @@
         "size_in_bytes": 286
       },
       {
+        "_path": "bin/pip",
+        "path_type": "unix_python_entry_point"
+      },
+      {
+        "_path": "bin/pip3",
+        "path_type": "unix_python_entry_point"
+      },
+      {
         "_path": "lib/python3.8/site-packages/pip/__pycache__/__init__.cpython-38.pyc",
         "path_type": "pyc_file"
       },
@@ -5342,20 +5349,11 @@
       {
         "_path": "lib/python3.8/site-packages/pip/_vendor/webencodings/__pycache__/x_user_defined.cpython-38.pyc",
         "path_type": "pyc_file"
-      },
-      {
-        "_path": "bin/pip",
-        "path_type": "unix_python_entry_point"
-      },
-      {
-        "_path": "bin/pip3",
-        "path_type": "unix_python_entry_point"
       }
     ],
     "paths_version": 1
   },
   "requested_spec": "pip=21.3.1",
-  "sha256": "5491649d26dbfe0b28adbf916226e15fb4bd76b650bc5363ad566c4dee9906e1",
   "size": 1259053,
   "subdir": "noarch",
   "timestamp": 1634925746569,

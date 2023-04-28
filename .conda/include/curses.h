@@ -229,7 +229,7 @@ typedef uint32_t mmask_t;
 #undef FALSE
 #define FALSE   0
 
-typedef unsigned NCURSES_BOOL;
+typedef unsigned char NCURSES_BOOL;
 
 #if defined(__cplusplus)	/* __cplusplus, etc. */
 

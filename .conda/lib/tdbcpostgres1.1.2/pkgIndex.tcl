@@ -5,4 +5,4 @@ if {[catch {package require Tcl 8.6}]} {
 }
 package ifneeded tdbc::postgres 1.1.2 \
     "[list source [file join $dir tdbcpostgres.tcl]]\;\
-    [list load [file join $dir libtdbcpostgres1.1.2.dylib] tdbcpostgres]"
+    [list load [file join $dir libtdbcpostgres1.1.2.so] tdbcpostgres]"

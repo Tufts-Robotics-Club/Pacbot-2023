@@ -26,18 +26,12 @@ extern "C" {
  * OpenSSL was configured with the following options:
  */
 
-# ifndef OPENSSL_SYS_MACOSX
-#  define OPENSSL_SYS_MACOSX 1
-# endif
 # define OPENSSL_CONFIGURED_API 30000
 # ifndef OPENSSL_RAND_SEED_OS
 #  define OPENSSL_RAND_SEED_OS
 # endif
 # ifndef OPENSSL_THREADS
 #  define OPENSSL_THREADS
-# endif
-# ifndef OPENSSL_NO_AFALGENG
-#  define OPENSSL_NO_AFALGENG
 # endif
 # ifndef OPENSSL_NO_ASAN
 #  define OPENSSL_NO_ASAN

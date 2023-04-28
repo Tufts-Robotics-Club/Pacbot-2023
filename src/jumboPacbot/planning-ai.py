@@ -87,6 +87,17 @@ class Planner:
 		with open('board.csv') as csvfile:
 			self.board = np.array(list(csv.reader(csvfile)))
 
+	def find_closest_coin(self):
+		min_distance = float('inf')
+		closest_coin = None
+		for coin in self.coins:
+			distance = manhattan_distance(self.position, coin.position)
+			if distance < min_distance:
+				min_distance = distance
+				closest_coin = coin
+		return closest_coin
+
+
 	def plan(self):
 
 		if self.last_location is None:
@@ -112,7 +123,7 @@ class Planner:
 				if  self.manhattan_distance((13,13), self.pacbotLocation) < self.fruit_timer:
 					self.goal = (13,13)
 				else:
-					self.goal = ... # Find the closest coin???
+					self.goal = find_closest_coin(self.pacbotLocation, coins) # Find the closest coin???
 		else:
 			# Pacbot is not at a junction
 			print("Pacbot is not at a junction")

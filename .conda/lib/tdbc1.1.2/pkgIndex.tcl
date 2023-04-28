@@ -13,6 +13,6 @@ apply {{dir} {
     }
     package ifneeded tdbc 1.1.2 \
 	"package require TclOO 1.0-;\
-	[list load [file join $dir libtdbc1.1.2.dylib] tdbc]\;\
+	[list load [file join $dir libtdbc1.1.2.so] tdbc]\;\
 	[list source $libraryfile]"
 }} $dir

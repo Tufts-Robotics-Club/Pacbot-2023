@@ -5,10 +5,10 @@
 # You can do whatever you want with this file.
 #
 
-prefix=/Users/tanaynistala/Developer/Pacbot/.conda
-exec_prefix=/Users/tanaynistala/Developer/Pacbot/.conda
-libdir=/Users/tanaynistala/Developer/Pacbot/.conda/lib
-includedir=/Users/tanaynistala/Developer/Pacbot/.conda/include
+prefix=/root/Programming_Projects/Pacbot-2023/.conda
+exec_prefix=/root/Programming_Projects/Pacbot-2023/.conda
+libdir=/root/Programming_Projects/Pacbot-2023/.conda/lib
+includedir=/root/Programming_Projects/Pacbot-2023/.conda/include
 
 Name: liblzma
 Description: General purpose data compression library
@@ -16,4 +16,4 @@ URL: https://tukaani.org/xz/
 Version: 5.2.5
 Cflags: -I${includedir}
 Libs: -L${libdir} -llzma
-Libs.private: -pthread -lpthread
+Libs.private: -pthread -lrt  -lpthread

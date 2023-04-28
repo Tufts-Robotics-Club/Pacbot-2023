@@ -1,6 +1,6 @@
 # Package Information for pkg-config
 
-prefix=/Users/tanaynistala/Developer/Pacbot/.conda
+prefix=/root/Programming_Projects/Pacbot-2023/.conda
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
@@ -9,5 +9,5 @@ Name: SQLite
 Description: SQL database engine
 Version: 3.36.0
 Libs: -L${libdir} -lsqlite3
-Libs.private: -lz 
+Libs.private: -lz -lm -ldl -lpthread 
 Cflags: -I${includedir}

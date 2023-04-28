@@ -1,8 +1,8 @@
 # tk pkg-config source file
 
-prefix=/Users/tanaynistala/Developer/Pacbot/.conda
-exec_prefix=/Users/tanaynistala/Developer/Pacbot/.conda
-libdir=/Users/tanaynistala/Developer/Pacbot/.conda/lib
+prefix=/root/Programming_Projects/Pacbot-2023/.conda
+exec_prefix=/root/Programming_Projects/Pacbot-2023/.conda
+libdir=/root/Programming_Projects/Pacbot-2023/.conda/lib
 includedir=${prefix}/include
 
 Name: The Tk Toolkit
@@ -11,5 +11,5 @@ URL: https://www.tcl-lang.org/
 Version: 8.6.11
 Requires: tcl >= 8.6
 Libs: -L${libdir} -ltk8.6 -ltkstub8.6
-Libs.private:  
+Libs.private:  -lX11
 Cflags: -I${includedir}

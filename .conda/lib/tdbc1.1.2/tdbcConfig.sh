@@ -15,17 +15,17 @@ tdbc_VERSION=1.1.2
 TDBC_VERSION=1.1.2
 
 # Name of the TDBC library - may be either a static or shared library
-tdbc_LIB_FILE=libtdbc1.1.2.dylib
-TDBC_LIB_FILE=libtdbc1.1.2.dylib
+tdbc_LIB_FILE=libtdbc1.1.2.so
+TDBC_LIB_FILE=libtdbc1.1.2.so
 
 # String to pass to the linker to pick up the TDBC library from its build dir
-tdbc_BUILD_LIB_SPEC="-L/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/unix/pkgs/tdbc1.1.2 -ltdbc1.1.2"
-TDBC_BUILD_LIB_SPEC="-L/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/unix/pkgs/tdbc1.1.2 -ltdbc1.1.2"
+tdbc_BUILD_LIB_SPEC="-L/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/unix/pkgs/tdbc1.1.2 -ltdbc1.1.2"
+TDBC_BUILD_LIB_SPEC="-L/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/unix/pkgs/tdbc1.1.2 -ltdbc1.1.2"
 
 # String to pass to the linker to pick up the TDBC library from its installed
 # dir.
-tdbc_LIB_SPEC="-L/Users/tanaynistala/Developer/Pacbot/.conda/lib/tdbc1.1.2 -ltdbc1.1.2"
-TDBC_LIB_SPEC="-L/Users/tanaynistala/Developer/Pacbot/.conda/lib/tdbc1.1.2 -ltdbc1.1.2"
+tdbc_LIB_SPEC="-L/root/Programming_Projects/Pacbot-2023/.conda/lib/tdbc1.1.2 -ltdbc1.1.2"
+TDBC_LIB_SPEC="-L/root/Programming_Projects/Pacbot-2023/.conda/lib/tdbc1.1.2 -ltdbc1.1.2"
 
 # Name of the TBDC stub library
 tdbc_STUB_LIB_FILE="libtdbcstub1.1.2.a"
@@ -33,47 +33,47 @@ TDBC_STUB_LIB_FILE="libtdbcstub1.1.2.a"
 
 # String to pass to the linker to pick up the TDBC stub library from its
 # build directory
-tdbc_BUILD_STUB_LIB_SPEC="-L/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/unix/pkgs/tdbc1.1.2 -ltdbcstub1.1.2"
-TDBC_BUILD_STUB_LIB_SPEC="-L/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/unix/pkgs/tdbc1.1.2 -ltdbcstub1.1.2"
+tdbc_BUILD_STUB_LIB_SPEC="-L/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/unix/pkgs/tdbc1.1.2 -ltdbcstub1.1.2"
+TDBC_BUILD_STUB_LIB_SPEC="-L/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/unix/pkgs/tdbc1.1.2 -ltdbcstub1.1.2"
 
 # String to pass to the linker to pick up the TDBC stub library from its
 # installed directory
-tdbc_STUB_LIB_SPEC="-L/Users/tanaynistala/Developer/Pacbot/.conda/lib/tdbc1.1.2 -ltdbcstub1.1.2"
-TDBC_STUB_LIB_SPEC="-L/Users/tanaynistala/Developer/Pacbot/.conda/lib/tdbc1.1.2 -ltdbcstub1.1.2"
+tdbc_STUB_LIB_SPEC="-L/root/Programming_Projects/Pacbot-2023/.conda/lib/tdbc1.1.2 -ltdbcstub1.1.2"
+TDBC_STUB_LIB_SPEC="-L/root/Programming_Projects/Pacbot-2023/.conda/lib/tdbc1.1.2 -ltdbcstub1.1.2"
 
 # Path name of the TDBC stub library in its build directory
-tdbc_BUILD_STUB_LIB_PATH="/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/unix/pkgs/tdbc1.1.2/libtdbcstub1.1.2.a"
-TDBC_BUILD_STUB_LIB_PATH="/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/unix/pkgs/tdbc1.1.2/libtdbcstub1.1.2.a"
+tdbc_BUILD_STUB_LIB_PATH="/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/unix/pkgs/tdbc1.1.2/libtdbcstub1.1.2.a"
+TDBC_BUILD_STUB_LIB_PATH="/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/unix/pkgs/tdbc1.1.2/libtdbcstub1.1.2.a"
 
 # Path name of the TDBC stub library in its installed directory
-tdbc_STUB_LIB_PATH="/Users/tanaynistala/Developer/Pacbot/.conda/lib/tdbc1.1.2/libtdbcstub1.1.2.a"
-TDBC_STUB_LIB_PATH="/Users/tanaynistala/Developer/Pacbot/.conda/lib/tdbc1.1.2/libtdbcstub1.1.2.a"
+tdbc_STUB_LIB_PATH="/root/Programming_Projects/Pacbot-2023/.conda/lib/tdbc1.1.2/libtdbcstub1.1.2.a"
+TDBC_STUB_LIB_PATH="/root/Programming_Projects/Pacbot-2023/.conda/lib/tdbc1.1.2/libtdbcstub1.1.2.a"
 
 # Location of the top-level source directories from which TDBC was built.
 # This is the directory that contains doc/, generic/ and so on.  If TDBC
 # was compiled in a directory other than the source directory, this still
 # points to the location of the sources, not the location where TDBC was
 # compiled.
-tdbc_SRC_DIR="/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/pkgs/tdbc1.1.2"
-TDBC_SRC_DIR="/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/pkgs/tdbc1.1.2"
+tdbc_SRC_DIR="/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/pkgs/tdbc1.1.2"
+TDBC_SRC_DIR="/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/pkgs/tdbc1.1.2"
 
 # String to pass to the compiler so that an extension can find installed TDBC
 # headers
-tdbc_INCLUDE_SPEC="-I/Users/tanaynistala/Developer/Pacbot/.conda/include"
-TDBC_INCLUDE_SPEC="-I/Users/tanaynistala/Developer/Pacbot/.conda/include"
+tdbc_INCLUDE_SPEC="-I/root/Programming_Projects/Pacbot-2023/.conda/include"
+TDBC_INCLUDE_SPEC="-I/root/Programming_Projects/Pacbot-2023/.conda/include"
 
 # String to pass to the compiler so that an extension can find TDBC headers
 # in the source directory
-tdbc_BUILD_INCLUDE_SPEC="-I/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/pkgs/tdbc1.1.2/generic"
-TDBC_BUILD_INCLUDE_SPEC="-I/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/pkgs/tdbc1.1.2/generic"
+tdbc_BUILD_INCLUDE_SPEC="-I/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/pkgs/tdbc1.1.2/generic"
+TDBC_BUILD_INCLUDE_SPEC="-I/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/pkgs/tdbc1.1.2/generic"
 
 # Path name where .tcl files in the tdbc package appear at run time.
-tdbc_LIBRARY_PATH="/Users/tanaynistala/Developer/Pacbot/.conda/lib/tdbc1.1.2"
-TDBC_LIBRARY_PATH="/Users/tanaynistala/Developer/Pacbot/.conda/lib/tdbc1.1.2"
+tdbc_LIBRARY_PATH="/root/Programming_Projects/Pacbot-2023/.conda/lib/tdbc1.1.2"
+TDBC_LIBRARY_PATH="/root/Programming_Projects/Pacbot-2023/.conda/lib/tdbc1.1.2"
 
 # Path name where .tcl files in the tdbc package appear at build time.
-tdbc_BUILD_LIBRARY_PATH="/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/pkgs/tdbc1.1.2/library"
-TDBC_BUILD_LIBRARY_PATH="/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/pkgs/tdbc1.1.2/library"
+tdbc_BUILD_LIBRARY_PATH="/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/pkgs/tdbc1.1.2/library"
+TDBC_BUILD_LIBRARY_PATH="/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/pkgs/tdbc1.1.2/library"
 
 # Additional flags that must be passed to the C compiler to use tdbc
 tdbc_CFLAGS=

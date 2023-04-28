@@ -1,8 +1,8 @@
-prefix=/Users/tanaynistala/Developer/Pacbot/.conda
+prefix=/root/Programming_Projects/Pacbot-2023/.conda
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 toolexeclibdir=${libdir}
-includedir=/Users/tanaynistala/Developer/Pacbot/.conda/include
+includedir=/root/Programming_Projects/Pacbot-2023/.conda/include
 
 Name: libffi
 Description: Library supporting Foreign Function Interfaces

@@ -5,4 +5,4 @@ if {[catch {package require Tcl 8.6}]} {
 }
 package ifneeded tdbc::odbc 1.1.2 \
     "[list source [file join $dir tdbcodbc.tcl]]\;\
-    [list load [file join $dir libtdbcodbc1.1.2.dylib] tdbcodbc]"
+    [list load [file join $dir libtdbcodbc1.1.2.so] tdbcodbc]"

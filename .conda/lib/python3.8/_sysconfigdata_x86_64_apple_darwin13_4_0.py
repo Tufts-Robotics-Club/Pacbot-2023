@@ -8,18 +8,18 @@ build_time_vars = {'ABIFLAGS': '',
  'BASECFLAGS': '-fno-strict-aliasing -Wsign-compare -Wunreachable-code',
  'BASECPPFLAGS': '-IObjects -IInclude -IPython',
  'BASEMODLIBS': '',
- 'BINDIR': '/Users/tanaynistala/Developer/Pacbot/.conda/bin',
- 'BINLIBDEST': '/Users/tanaynistala/Developer/Pacbot/.conda/lib/python3.8',
+ 'BINDIR': '/root/Programming_Projects/Pacbot-2023/.conda/bin',
+ 'BINLIBDEST': '/root/Programming_Projects/Pacbot-2023/.conda/lib/python3.8',
  'BLDLIBRARY': 'libpython3.8.a',
  'BLDSHARED': 'x86_64-apple-darwin13.4.0-clang -bundle -undefined '
               'dynamic_lookup -Wl,-pie -Wl,-headerpad_max_install_names '
               '-Wl,-dead_strip_dylibs '
-              '-Wl,-rpath,/Users/tanaynistala/Developer/Pacbot/.conda/lib '
-              '-L/Users/tanaynistala/Developer/Pacbot/.conda/lib '
+              '-Wl,-rpath,/root/Programming_Projects/Pacbot-2023/.conda/lib '
+              '-L/root/Programming_Projects/Pacbot-2023/.conda/lib '
               '-flto -Wl,-export_dynamic -Wl,-pie '
               '-Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs '
-              '-Wl,-rpath,/Users/tanaynistala/Developer/Pacbot/.conda/lib '
-              '-L/Users/tanaynistala/Developer/Pacbot/.conda/lib',
+              '-Wl,-rpath,/root/Programming_Projects/Pacbot-2023/.conda/lib '
+              '-L/root/Programming_Projects/Pacbot-2023/.conda/lib',
  'BUILDEXE': '.exe',
  'BUILDPYTHON': 'python.exe',
  'BUILD_GNU_TYPE': 'x86_64-apple-darwin13.4.0',
@@ -31,7 +31,7 @@ build_time_vars = {'ABIFLAGS': '',
            '-mssse3 -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O3 '
            '-pipe  '
            '-fdebug-prefix-map=${SRC_DIR}=/usr/local/src/conda/${PKG_NAME}-${PKG_VERSION} '
-           '-fdebug-prefix-map=/Users/tanaynistala/Developer/Pacbot/.conda=/usr/local/src/conda-prefix '
+           '-fdebug-prefix-map=/root/Programming_Projects/Pacbot-2023/.conda=/usr/local/src/conda-prefix '
            '-flto -Wl,-export_dynamic -march=core2 -mtune=haswell '
            '-mssse3 -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O3 ',
  'CFLAGSFORSHARED': '',
@@ -41,23 +41,23 @@ build_time_vars = {'ABIFLAGS': '',
  'CONFIGURE_CFLAGS': '-march=core2 -mtune=haswell -mssse3 -ftree-vectorize '
                      '-fPIC -fPIE -fstack-protector-strong -O3 -pipe  '
                      '-fdebug-prefix-map=${SRC_DIR}=/usr/local/src/conda/${PKG_NAME}-${PKG_VERSION} '
-                     '-fdebug-prefix-map=/Users/tanaynistala/Developer/Pacbot/.conda=/usr/local/src/conda-prefix '
+                     '-fdebug-prefix-map=/root/Programming_Projects/Pacbot-2023/.conda=/usr/local/src/conda-prefix '
                      '-flto -Wl,-export_dynamic',
  'CONFIGURE_CFLAGS_NODIST': '-std=c99 -Werror=implicit-function-declaration',
  'CONFIGURE_CPPFLAGS': '-D_FORTIFY_SOURCE=2 -mmacosx-version-min=10.9 '
-                       '-I/Users/tanaynistala/Developer/Pacbot/.conda/include',
+                       '-I/root/Programming_Projects/Pacbot-2023/.conda/include',
  'CONFIGURE_LDFLAGS': '-Wl,-pie -Wl,-headerpad_max_install_names '
                       '-Wl,-dead_strip_dylibs '
-                      '-Wl,-rpath,/Users/tanaynistala/Developer/Pacbot/.conda/lib '
-                      '-L/Users/tanaynistala/Developer/Pacbot/.conda/lib '
+                      '-Wl,-rpath,/root/Programming_Projects/Pacbot-2023/.conda/lib '
+                      '-L/root/Programming_Projects/Pacbot-2023/.conda/lib '
                       '-flto -Wl,-export_dynamic',
- 'CONFIG_ARGS': "'--prefix=/Users/tanaynistala/Developer/Pacbot/.conda' "
+ 'CONFIG_ARGS': "'--prefix=/root/Programming_Projects/Pacbot-2023/.conda' "
                 "'--build=x86_64-apple-darwin13.4.0' "
                 "'--host=x86_64-apple-darwin13.4.0' '--enable-ipv6' "
                 "'--with-ensurepip=no' '--with-computed-gotos' "
                 "'--with-system-ffi' '--enable-loadable-sqlite-extensions' "
-                "'--with-tcltk-includes=-I/Users/tanaynistala/Developer/Pacbot/.conda/include' "
-                "'--with-tcltk-libs=-L/Users/tanaynistala/Developer/Pacbot/.conda/lib "
+                "'--with-tcltk-includes=-I/root/Programming_Projects/Pacbot-2023/.conda/include' "
+                "'--with-tcltk-libs=-L/root/Programming_Projects/Pacbot-2023/.conda/lib "
                 "-ltcl8.6 -ltk8.6' '--enable-optimizations' '--with-lto' "
                 "'--disable-shared' 'build_alias=x86_64-apple-darwin13.4.0' "
                 "'host_alias=x86_64-apple-darwin13.4.0' "
@@ -65,16 +65,16 @@ build_time_vars = {'ABIFLAGS': '',
                 '-mtune=haswell -mssse3 -ftree-vectorize -fPIC -fPIE '
                 '-fstack-protector-strong -O3 -pipe  '
                 '-fdebug-prefix-map=${SRC_DIR}=/usr/local/src/conda/${PKG_NAME}-${PKG_VERSION} '
-                '-fdebug-prefix-map=/Users/tanaynistala/Developer/Pacbot/.conda=/usr/local/src/conda-prefix '
+                '-fdebug-prefix-map=/root/Programming_Projects/Pacbot-2023/.conda=/usr/local/src/conda-prefix '
                 "-flto' 'LDFLAGS=-Wl,-pie -Wl,-headerpad_max_install_names "
                 '-Wl,-dead_strip_dylibs '
-                '-Wl,-rpath,/Users/tanaynistala/Developer/Pacbot/.conda/lib '
-                "-L/Users/tanaynistala/Developer/Pacbot/.conda/lib' "
+                '-Wl,-rpath,/root/Programming_Projects/Pacbot-2023/.conda/lib '
+                "-L/root/Programming_Projects/Pacbot-2023/.conda/lib' "
                 "'CPPFLAGS=-D_FORTIFY_SOURCE=2 -mmacosx-version-min=10.9 "
-                "-I/Users/tanaynistala/Developer/Pacbot/.conda/include' "
-                "'PKG_CONFIG_PATH=/Users/tanaynistala/Developer/Pacbot/.conda/lib/pkgconfig'",
- 'CONFINCLUDEDIR': '/Users/tanaynistala/Developer/Pacbot/.conda/include',
- 'CONFINCLUDEPY': '/Users/tanaynistala/Developer/Pacbot/.conda/include/python3.8',
+                "-I/root/Programming_Projects/Pacbot-2023/.conda/include' "
+                "'PKG_CONFIG_PATH=/root/Programming_Projects/Pacbot-2023/.conda/lib/pkgconfig'",
+ 'CONFINCLUDEDIR': '/root/Programming_Projects/Pacbot-2023/.conda/include',
+ 'CONFINCLUDEPY': '/root/Programming_Projects/Pacbot-2023/.conda/include/python3.8',
  'COREPYTHONPATH': '',
  'COVERAGE_INFO': '${SRC_DIR}/build-static/coverage.info',
  'COVERAGE_REPORT': '${SRC_DIR}/build-static/lcov-report',
@@ -83,17 +83,17 @@ build_time_vars = {'ABIFLAGS': '',
  'CPPFLAGS': '-IObjects -IInclude -IPython -I. '
              '-I${SRC_DIR}/Include '
              '-D_FORTIFY_SOURCE=2 -mmacosx-version-min=10.9 '
-             '-I/Users/tanaynistala/Developer/Pacbot/.conda/include '
+             '-I/root/Programming_Projects/Pacbot-2023/.conda/include '
              '-D_FORTIFY_SOURCE=2 -mmacosx-version-min=10.9 '
-             '-I/Users/tanaynistala/Developer/Pacbot/.conda/include',
+             '-I/root/Programming_Projects/Pacbot-2023/.conda/include',
  'CXX': 'x86_64-apple-darwin13.4.0-clang++',
- 'DESTDIRS': '/Users/tanaynistala/Developer/Pacbot/.conda '
-             '/Users/tanaynistala/Developer/Pacbot/.conda/lib '
-             '/Users/tanaynistala/Developer/Pacbot/.conda/lib/python3.8 '
-             '/Users/tanaynistala/Developer/Pacbot/.conda/lib/python3.8/lib-dynload',
- 'DESTLIB': '/Users/tanaynistala/Developer/Pacbot/.conda/lib/python3.8',
+ 'DESTDIRS': '/root/Programming_Projects/Pacbot-2023/.conda '
+             '/root/Programming_Projects/Pacbot-2023/.conda/lib '
+             '/root/Programming_Projects/Pacbot-2023/.conda/lib/python3.8 '
+             '/root/Programming_Projects/Pacbot-2023/.conda/lib/python3.8/lib-dynload',
+ 'DESTLIB': '/root/Programming_Projects/Pacbot-2023/.conda/lib/python3.8',
  'DESTPATH': '',
- 'DESTSHARED': '/Users/tanaynistala/Developer/Pacbot/.conda/lib/python3.8/lib-dynload',
+ 'DESTSHARED': '/root/Programming_Projects/Pacbot-2023/.conda/lib/python3.8/lib-dynload',
  'DFLAGS': '',
  'DIRMODE': 755,
  'DIST': 'README.rst ChangeLog configure configure.ac acconfig.h pyconfig.h.in '
@@ -525,12 +525,12 @@ build_time_vars = {'ABIFLAGS': '',
  'HAVE_ZLIB_COPY': 1,
  'HAVE__GETPTY': 0,
  'HOST_GNU_TYPE': 'x86_64-apple-darwin13.4.0',
- 'INCLDIRSTOMAKE': '/Users/tanaynistala/Developer/Pacbot/.conda/include '
-                   '/Users/tanaynistala/Developer/Pacbot/.conda/include '
-                   '/Users/tanaynistala/Developer/Pacbot/.conda/include/python3.8 '
-                   '/Users/tanaynistala/Developer/Pacbot/.conda/include/python3.8',
- 'INCLUDEDIR': '/Users/tanaynistala/Developer/Pacbot/.conda/include',
- 'INCLUDEPY': '/Users/tanaynistala/Developer/Pacbot/.conda/include/python3.8',
+ 'INCLDIRSTOMAKE': '/root/Programming_Projects/Pacbot-2023/.conda/include '
+                   '/root/Programming_Projects/Pacbot-2023/.conda/include '
+                   '/root/Programming_Projects/Pacbot-2023/.conda/include/python3.8 '
+                   '/root/Programming_Projects/Pacbot-2023/.conda/include/python3.8',
+ 'INCLUDEDIR': '/root/Programming_Projects/Pacbot-2023/.conda/include',
+ 'INCLUDEPY': '/root/Programming_Projects/Pacbot-2023/.conda/include/python3.8',
  'INSTALL': '/usr/bin/install -c',
  'INSTALL_DATA': '/usr/bin/install -c -m 644',
  'INSTALL_PROGRAM': '/usr/bin/install -c',
@@ -542,34 +542,34 @@ build_time_vars = {'ABIFLAGS': '',
  'LDCXXSHARED': 'x86_64-apple-darwin13.4.0-clang++ -bundle -undefined '
                 'dynamic_lookup',
  'LDFLAGS': '-Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs '
-            '-Wl,-rpath,/Users/tanaynistala/Developer/Pacbot/.conda/lib '
-            '-L/Users/tanaynistala/Developer/Pacbot/.conda/lib '
+            '-Wl,-rpath,/root/Programming_Projects/Pacbot-2023/.conda/lib '
+            '-L/root/Programming_Projects/Pacbot-2023/.conda/lib '
             '-flto -Wl,-export_dynamic -Wl,-pie '
             '-Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs '
-            '-Wl,-rpath,/Users/tanaynistala/Developer/Pacbot/.conda/lib '
-            '-L/Users/tanaynistala/Developer/Pacbot/.conda/lib',
+            '-Wl,-rpath,/root/Programming_Projects/Pacbot-2023/.conda/lib '
+            '-L/root/Programming_Projects/Pacbot-2023/.conda/lib',
  'LDLAST': '',
  'LDLIBRARY': 'libpython3.8.a',
  'LDLIBRARYDIR': '',
  'LDSHARED': 'x86_64-apple-darwin13.4.0-clang -bundle -undefined '
              'dynamic_lookup -Wl,-pie -Wl,-headerpad_max_install_names '
              '-Wl,-dead_strip_dylibs '
-             '-Wl,-rpath,/Users/tanaynistala/Developer/Pacbot/.conda/lib '
-             '-L/Users/tanaynistala/Developer/Pacbot/.conda/lib '
+             '-Wl,-rpath,/root/Programming_Projects/Pacbot-2023/.conda/lib '
+             '-L/root/Programming_Projects/Pacbot-2023/.conda/lib '
              '-flto -Wl,-export_dynamic -Wl,-pie '
              '-Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs '
-             '-Wl,-rpath,/Users/tanaynistala/Developer/Pacbot/.conda/lib '
-             '-L/Users/tanaynistala/Developer/Pacbot/.conda/lib',
+             '-Wl,-rpath,/root/Programming_Projects/Pacbot-2023/.conda/lib '
+             '-L/root/Programming_Projects/Pacbot-2023/.conda/lib',
  'LDVERSION': '3.8',
  'LIBC': '',
- 'LIBDEST': '/Users/tanaynistala/Developer/Pacbot/.conda/lib/python3.8',
- 'LIBDIR': '/Users/tanaynistala/Developer/Pacbot/.conda/lib',
- 'LIBFFI_INCLUDEDIR': '/Users/tanaynistala/Developer/Pacbot/.conda/include',
+ 'LIBDEST': '/root/Programming_Projects/Pacbot-2023/.conda/lib/python3.8',
+ 'LIBDIR': '/root/Programming_Projects/Pacbot-2023/.conda/lib',
+ 'LIBFFI_INCLUDEDIR': '/root/Programming_Projects/Pacbot-2023/.conda/include',
  'LIBM': '',
  'LIBOBJDIR': 'Python/',
  'LIBOBJS': '',
- 'LIBPC': '/Users/tanaynistala/Developer/Pacbot/.conda/lib/pkgconfig',
- 'LIBPL': '/Users/tanaynistala/Developer/Pacbot/.conda/lib/python3.8/config-3.8-darwin',
+ 'LIBPC': '/root/Programming_Projects/Pacbot-2023/.conda/lib/pkgconfig',
+ 'LIBPL': '/root/Programming_Projects/Pacbot-2023/.conda/lib/python3.8/config-3.8-darwin',
  'LIBRARY': 'libpython3.8.a',
  'LIBRARY_OBJS': '\\',
  'LIBRARY_OBJS_OMIT_FROZEN': '\\',
@@ -587,13 +587,13 @@ build_time_vars = {'ABIFLAGS': '',
  'LOG1P_DROPS_ZERO_SIGN': 0,
  'MACHDEP': 'darwin',
  'MACHDEP_OBJS': '',
- 'MACHDESTLIB': '/Users/tanaynistala/Developer/Pacbot/.conda/lib/python3.8',
+ 'MACHDESTLIB': '/root/Programming_Projects/Pacbot-2023/.conda/lib/python3.8',
  'MACOSX_DEPLOYMENT_TARGET': '10.9',
  'MAINCC': 'x86_64-apple-darwin13.4.0-clang',
  'MAJOR_IN_MKDEV': 0,
  'MAJOR_IN_SYSMACROS': 0,
  'MAKESETUP': '${SRC_DIR}/Modules/makesetup',
- 'MANDIR': '/Users/tanaynistala/Developer/Pacbot/.conda/share/man',
+ 'MANDIR': '/root/Programming_Projects/Pacbot-2023/.conda/share/man',
  'MKDIR_P': '${SRC_DIR}/install-sh -c -d',
  'MODBUILT_NAMES': 'posix  errno  pwd  _sre  _codecs  _weakref  _functools  '
                    '_operator  _collections  _abc  itertools  atexit  _signal  '
@@ -620,8 +620,8 @@ build_time_vars = {'ABIFLAGS': '',
  'MVWDELCH_IS_EXPRESSION': 1,
  'NO_AS_NEEDED': '',
  'OBJECT_OBJS': '\\',
- 'OPENSSL_INCLUDES': '-I/Users/tanaynistala/Developer/Pacbot/.conda/include',
- 'OPENSSL_LDFLAGS': '-L/Users/tanaynistala/Developer/Pacbot/.conda/lib',
+ 'OPENSSL_INCLUDES': '-I/root/Programming_Projects/Pacbot-2023/.conda/include',
+ 'OPENSSL_LDFLAGS': '-L/root/Programming_Projects/Pacbot-2023/.conda/lib',
  'OPENSSL_LIBS': '-lssl -lcrypto',
  'OPT': '-DNDEBUG -fwrapv -O3 -Wall -Wstrict-prototypes',
  'OTHER_LIBTOOL_OPT': '',
@@ -662,18 +662,18 @@ build_time_vars = {'ABIFLAGS': '',
               '-mtune=haswell -mssse3 -ftree-vectorize -fPIC -fPIE '
               '-fstack-protector-strong -O3 -pipe  '
               '-fdebug-prefix-map=${SRC_DIR}=/usr/local/src/conda/${PKG_NAME}-${PKG_VERSION} '
-              '-fdebug-prefix-map=/Users/tanaynistala/Developer/Pacbot/.conda=/usr/local/src/conda-prefix '
+              '-fdebug-prefix-map=/root/Programming_Projects/Pacbot-2023/.conda=/usr/local/src/conda-prefix '
               '-flto -flto -Wl,-export_dynamic -march=core2 -mtune=haswell '
               '-mssse3 -ftree-vectorize -fPIC -fPIE -fstack-protector-strong '
               '-O3 -pipe  '
               '-fdebug-prefix-map=${SRC_DIR}=/usr/local/src/conda/${PKG_NAME}-${PKG_VERSION} '
-              '-fdebug-prefix-map=/Users/tanaynistala/Developer/Pacbot/.conda=/usr/local/src/conda-prefix '
+              '-fdebug-prefix-map=/root/Programming_Projects/Pacbot-2023/.conda=/usr/local/src/conda-prefix '
               '-flto',
  'PY_CFLAGS_NODIST': '-std=c99 -Werror=implicit-function-declaration '
                      '-march=core2 -mtune=haswell -mssse3 -ftree-vectorize '
                      '-fPIC -fPIE -fstack-protector-strong -O3 -pipe  '
                      '-fdebug-prefix-map=${SRC_DIR}=/usr/local/src/conda/${PKG_NAME}-${PKG_VERSION} '
-                     '-fdebug-prefix-map=/Users/tanaynistala/Developer/Pacbot/.conda=/usr/local/src/conda-prefix '
+                     '-fdebug-prefix-map=/root/Programming_Projects/Pacbot-2023/.conda=/usr/local/src/conda-prefix '
                      '-flto -fprofile-instr-use=code.profclangd',
  'PY_COERCE_C_LOCALE': 1,
  'PY_CORE_CFLAGS': '-fno-strict-aliasing -Wsign-compare -Wunreachable-code '
@@ -681,40 +681,40 @@ build_time_vars = {'ABIFLAGS': '',
                    '-march=core2 -mtune=haswell -mssse3 -ftree-vectorize -fPIC '
                    '-fPIE -fstack-protector-strong -O3 -pipe  '
                    '-fdebug-prefix-map=${SRC_DIR}=/usr/local/src/conda/${PKG_NAME}-${PKG_VERSION} '
-                   '-fdebug-prefix-map=/Users/tanaynistala/Developer/Pacbot/.conda=/usr/local/src/conda-prefix '
+                   '-fdebug-prefix-map=/root/Programming_Projects/Pacbot-2023/.conda=/usr/local/src/conda-prefix '
                    '-flto -flto -Wl,-export_dynamic -march=core2 '
                    '-mtune=haswell -mssse3 -ftree-vectorize -fPIC -fPIE '
                    '-fstack-protector-strong -O3 -pipe  '
                    '-fdebug-prefix-map=${SRC_DIR}=/usr/local/src/conda/${PKG_NAME}-${PKG_VERSION} '
-                   '-fdebug-prefix-map=/Users/tanaynistala/Developer/Pacbot/.conda=/usr/local/src/conda-prefix '
+                   '-fdebug-prefix-map=/root/Programming_Projects/Pacbot-2023/.conda=/usr/local/src/conda-prefix '
                    '-flto -std=c99 -Werror=implicit-function-declaration '
                    '-march=core2 -mtune=haswell -mssse3 -ftree-vectorize -fPIC '
                    '-fPIE -fstack-protector-strong -O3 -pipe  '
                    '-fdebug-prefix-map=${SRC_DIR}=/usr/local/src/conda/${PKG_NAME}-${PKG_VERSION} '
-                   '-fdebug-prefix-map=/Users/tanaynistala/Developer/Pacbot/.conda=/usr/local/src/conda-prefix '
+                   '-fdebug-prefix-map=/root/Programming_Projects/Pacbot-2023/.conda=/usr/local/src/conda-prefix '
                    '-flto -fprofile-instr-use=code.profclangd -IObjects '
                    '-IInclude -IPython -I. '
                    '-I${SRC_DIR}/Include '
                    '-D_FORTIFY_SOURCE=2 -mmacosx-version-min=10.9 '
-                   '-I/Users/tanaynistala/Developer/Pacbot/.conda/include '
+                   '-I/root/Programming_Projects/Pacbot-2023/.conda/include '
                    '-D_FORTIFY_SOURCE=2 -mmacosx-version-min=10.9 '
-                   '-I/Users/tanaynistala/Developer/Pacbot/.conda/include  '
+                   '-I/root/Programming_Projects/Pacbot-2023/.conda/include  '
                    '-DPy_BUILD_CORE',
  'PY_CPPFLAGS': '-IObjects -IInclude -IPython -I. '
                 '-I${SRC_DIR}/Include '
                 '-D_FORTIFY_SOURCE=2 -mmacosx-version-min=10.9 '
-                '-I/Users/tanaynistala/Developer/Pacbot/.conda/include '
+                '-I/root/Programming_Projects/Pacbot-2023/.conda/include '
                 '-D_FORTIFY_SOURCE=2 -mmacosx-version-min=10.9 '
-                '-I/Users/tanaynistala/Developer/Pacbot/.conda/include',
+                '-I/root/Programming_Projects/Pacbot-2023/.conda/include',
  'PY_FORMAT_SIZE_T': '"z"',
  'PY_LDFLAGS': '-Wl,-pie -Wl,-headerpad_max_install_names '
                '-Wl,-dead_strip_dylibs '
-               '-Wl,-rpath,/Users/tanaynistala/Developer/Pacbot/.conda/lib '
-               '-L/Users/tanaynistala/Developer/Pacbot/.conda/lib '
+               '-Wl,-rpath,/root/Programming_Projects/Pacbot-2023/.conda/lib '
+               '-L/root/Programming_Projects/Pacbot-2023/.conda/lib '
                '-flto -Wl,-export_dynamic -Wl,-pie '
                '-Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs '
-               '-Wl,-rpath,/Users/tanaynistala/Developer/Pacbot/.conda/lib '
-               '-L/Users/tanaynistala/Developer/Pacbot/.conda/lib',
+               '-Wl,-rpath,/root/Programming_Projects/Pacbot-2023/.conda/lib '
+               '-L/root/Programming_Projects/Pacbot-2023/.conda/lib',
  'PY_SSL_DEFAULT_CIPHERS': 1,
  'PY_SSL_DEFAULT_CIPHER_STRING': 0,
  'PY_WARN_ON_C_LOCALE': 1,
@@ -726,7 +726,7 @@ build_time_vars = {'ABIFLAGS': '',
  'RESSRCDIR': 'Mac/Resources/framework',
  'RETSIGTYPE': 'void',
  'RUNSHARED': '',
- 'SCRIPTDIR': '/Users/tanaynistala/Developer/Pacbot/.conda/lib',
+ 'SCRIPTDIR': '/root/Programming_Projects/Pacbot-2023/.conda/lib',
  'SETPGRP_HAVE_ARG': 0,
  'SGI_ABI': '',
  'SHELL': '/bin/sh',
@@ -763,8 +763,8 @@ build_time_vars = {'ABIFLAGS': '',
  'SYSLIBS': '',
  'SYS_SELECT_WITH_SYS_TIME': 1,
  'TANH_PRESERVES_ZERO_SIGN': 1,
- 'TCLTK_INCLUDES': '-I/Users/tanaynistala/Developer/Pacbot/.conda/include',
- 'TCLTK_LIBS': '-L/Users/tanaynistala/Developer/Pacbot/.conda/lib '
+ 'TCLTK_INCLUDES': '-I/root/Programming_Projects/Pacbot-2023/.conda/include',
+ 'TCLTK_LIBS': '-L/root/Programming_Projects/Pacbot-2023/.conda/lib '
                '-ltcl8.6 -ltk8.6',
  'TESTOPTS': '',
  'TESTPATH': '',
@@ -795,7 +795,7 @@ build_time_vars = {'ABIFLAGS': '',
  'XMLLIBSUBDIRS': 'xml xml/dom xml/etree xml/parsers xml/sax',
  'abs_builddir': '${SRC_DIR}/build-static',
  'abs_srcdir': '${SRC_DIR}',
- 'datarootdir': '/Users/tanaynistala/Developer/Pacbot/.conda/share',
- 'exec_prefix': '/Users/tanaynistala/Developer/Pacbot/.conda',
- 'prefix': '/Users/tanaynistala/Developer/Pacbot/.conda',
+ 'datarootdir': '/root/Programming_Projects/Pacbot-2023/.conda/share',
+ 'exec_prefix': '/root/Programming_Projects/Pacbot-2023/.conda',
+ 'prefix': '/root/Programming_Projects/Pacbot-2023/.conda',
  'srcdir': '${SRC_DIR}'}

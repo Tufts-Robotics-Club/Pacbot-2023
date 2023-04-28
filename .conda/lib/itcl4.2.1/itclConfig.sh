@@ -16,18 +16,18 @@ itcl_VERSION='4.2.1'
 ITCL_VERSION='4.2.1'
 
 # The name of the Itcl library (may be either a .a file or a shared library):
-itcl_LIB_FILE=libitcl4.2.1.dylib
-ITCL_LIB_FILE=libitcl4.2.1.dylib
+itcl_LIB_FILE=libitcl4.2.1.so
+ITCL_LIB_FILE=libitcl4.2.1.so
 
 # String to pass to linker to pick up the Itcl library from its
 # build directory.
-itcl_BUILD_LIB_SPEC='-L/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/unix/pkgs/itcl4.2.1 -litcl4.2.1'
-ITCL_BUILD_LIB_SPEC='-L/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/unix/pkgs/itcl4.2.1 -litcl4.2.1'
+itcl_BUILD_LIB_SPEC='-L/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/unix/pkgs/itcl4.2.1 -litcl4.2.1'
+ITCL_BUILD_LIB_SPEC='-L/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/unix/pkgs/itcl4.2.1 -litcl4.2.1'
 
 # String to pass to linker to pick up the Itcl library from its
 # installed directory.
-itcl_LIB_SPEC='-L/Users/tanaynistala/Developer/Pacbot/.conda/lib/itcl4.2.1 -litcl4.2.1'
-ITCL_LIB_SPEC='-L/Users/tanaynistala/Developer/Pacbot/.conda/lib/itcl4.2.1 -litcl4.2.1'
+itcl_LIB_SPEC='-L/root/Programming_Projects/Pacbot-2023/.conda/lib/itcl4.2.1 -litcl4.2.1'
+ITCL_LIB_SPEC='-L/root/Programming_Projects/Pacbot-2023/.conda/lib/itcl4.2.1 -litcl4.2.1'
 
 # The name of the Itcl stub library (a .a file):
 itcl_STUB_LIB_FILE=libitclstub4.2.1.a
@@ -35,33 +35,33 @@ ITCL_STUB_LIB_FILE=libitclstub4.2.1.a
 
 # String to pass to linker to pick up the Itcl stub library from its
 # build directory.
-itcl_BUILD_STUB_LIB_SPEC='-L/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/unix/pkgs/itcl4.2.1 -litclstub4.2.1'
-ITCL_BUILD_STUB_LIB_SPEC='-L/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/unix/pkgs/itcl4.2.1 -litclstub4.2.1'
+itcl_BUILD_STUB_LIB_SPEC='-L/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/unix/pkgs/itcl4.2.1 -litclstub4.2.1'
+ITCL_BUILD_STUB_LIB_SPEC='-L/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/unix/pkgs/itcl4.2.1 -litclstub4.2.1'
 
 # String to pass to linker to pick up the Itcl stub library from its
 # installed directory.
-itcl_STUB_LIB_SPEC='-L/Users/tanaynistala/Developer/Pacbot/.conda/lib/itcl4.2.1 -litclstub4.2.1'
-ITCL_STUB_LIB_SPEC='-L/Users/tanaynistala/Developer/Pacbot/.conda/lib/itcl4.2.1 -litclstub4.2.1'
+itcl_STUB_LIB_SPEC='-L/root/Programming_Projects/Pacbot-2023/.conda/lib/itcl4.2.1 -litclstub4.2.1'
+ITCL_STUB_LIB_SPEC='-L/root/Programming_Projects/Pacbot-2023/.conda/lib/itcl4.2.1 -litclstub4.2.1'
 
 # String to pass to linker to pick up the Itcl stub library from its
 # build directory.
-itcl_BUILD_STUB_LIB_PATH='/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/unix/pkgs/itcl4.2.1/libitclstub4.2.1.a'
-ITCL_BUILD_STUB_LIB_PATH='/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/unix/pkgs/itcl4.2.1/libitclstub4.2.1.a'
+itcl_BUILD_STUB_LIB_PATH='/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/unix/pkgs/itcl4.2.1/libitclstub4.2.1.a'
+ITCL_BUILD_STUB_LIB_PATH='/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/unix/pkgs/itcl4.2.1/libitclstub4.2.1.a'
 
 # String to pass to linker to pick up the Itcl stub library from its
 # installed directory.
-itcl_STUB_LIB_PATH='/Users/tanaynistala/Developer/Pacbot/.conda/lib/itcl4.2.1/libitclstub4.2.1.a'
-ITCL_STUB_LIB_PATH='/Users/tanaynistala/Developer/Pacbot/.conda/lib/itcl4.2.1/libitclstub4.2.1.a'
+itcl_STUB_LIB_PATH='/root/Programming_Projects/Pacbot-2023/.conda/lib/itcl4.2.1/libitclstub4.2.1.a'
+ITCL_STUB_LIB_PATH='/root/Programming_Projects/Pacbot-2023/.conda/lib/itcl4.2.1/libitclstub4.2.1.a'
 
 # Location of the top-level source directories from which [incr Tcl]
 # was built.  This is the directory that contains generic, unix, etc.
 # If [incr Tcl] was compiled in a different place than the directory
 # containing the source files, this points to the location of the sources,
 # not the location where [incr Tcl] was compiled.
-itcl_SRC_DIR='/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/pkgs/itcl4.2.1'
-ITCL_SRC_DIR='/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/pkgs/itcl4.2.1'
+itcl_SRC_DIR='/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/pkgs/itcl4.2.1'
+ITCL_SRC_DIR='/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/pkgs/itcl4.2.1'
 
 # String to pass to the compiler so that an extension can
 # find installed Itcl headers.
-itcl_INCLUDE_SPEC='-I/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/pkgs/itcl4.2.1/generic'
-ITCL_INCLUDE_SPEC='-I/Users/runner/miniforge3/conda-bld/tk_1630563654754/work/tcl8.6.11/pkgs/itcl4.2.1/generic'
+itcl_INCLUDE_SPEC='-I/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/pkgs/itcl4.2.1/generic'
+ITCL_INCLUDE_SPEC='-I/home/conda/feedstock_root/build_artifacts/tk_1630563632858/work/tcl8.6.11/pkgs/itcl4.2.1/generic'
