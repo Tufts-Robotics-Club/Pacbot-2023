@@ -17,7 +17,7 @@ class MotorModule(rm.ProtoModule):
         self.FREQUENCY = 100
 
         # How far from the target distance is acceptible before stopping
-        self.STOPPING_ERROR = 2
+        self.STOPPING_ERROR = 1
         # How much the two wheels can be different before we try to compensate
         self.DIFFERENCE_ERROR = 0.1
 
@@ -125,8 +125,8 @@ class MotorModule(rm.ProtoModule):
         elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
             right_speed *= self.CATCHUP_MODIFIER
 
-        print(f"Left: target - {self.left_target} | current - {self.left_encoder.steps} | speed - {left_speed}")
-        print(f"Right: target - {self.right_target} | current - {self.right_encoder.steps} | speed - {right_speed}")
+        print(f"\x1b[K2 Left: target - {self.left_target} | current - {self.left_encoder.steps} | speed - {left_speed}", end = "\r")
+        print(f"\x1b[K2Right: target - {self.right_target} | current - {self.right_encoder.steps} | speed - {right_speed}", end = "\r")
 
         # Set motor movement based on speed
         if left_speed == 0:
