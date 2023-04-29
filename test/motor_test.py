@@ -1,16 +1,17 @@
-from gpiozero import PhaseEnableMotor, RotaryEncoder
+from gpiozero import PhaseEnableMotor
+import Encoder
 from time import sleep
 
-motor1 = PhaseEnableMotor(27, 22)
-motor2 = PhaseEnableMotor(5, 6)
-rotar1 = RotaryEncoder(23, 24, max_steps=0)
-rotar2 = RotaryEncoder(14, 15, max_steps=0)
+motor1 = PhaseEnableMotor(22, 27)
+motor2 = PhaseEnableMotor(6, 5)
+rotar1 = Encoder(23, 24)
+rotar2 = Encoder(17, 25)
 # motor1.backward(0.5)
 # motor2.forward(0.5)
 
 counter = 0
 while counter < 100:
-    print(rotar1.steps, rotar2.steps)
+    print(rotar1.read(), rotar2.read())
     motor1.backward(0.1)
     motor2.backward(0.1)
     counter += 1
