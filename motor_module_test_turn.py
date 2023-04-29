@@ -23,7 +23,7 @@ class MotorModule(rm.ProtoModule):
 
         # How far from the target distance is acceptible before stopping
         self.STOPPING_ERROR = 1
-        self.TURN_ERROR = 5
+        self.TURN_ERROR = 1
         # How much the two wheels can be different before we try to compensate
         self.DIFFERENCE_ERROR = 0.1
         
