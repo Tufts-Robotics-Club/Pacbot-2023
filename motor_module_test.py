@@ -23,21 +23,21 @@ class MotorModule(rm.ProtoModule):
         self.FREQUENCY = 100
 
         # How far from the target distance is acceptible before stopping
-        self.STOPPING_ERROR = 10
-        self.TURN_ERROR = 5
+        self.STOPPING_ERROR = 5
+        self.TURN_ERROR = 1.5
         # How much the two wheels can be different before we try to compensate
         self.DIFFERENCE_ERROR = 0.1
         
         self.MOVE_MODIFIER = 1.0
         self.TURN_MODIFIER = 1.0
-        self.MOVE_ROTATIONS = 500
+        self.MOVE_ROTATIONS = 385
         self.CATCHUP_MODIFIER = 1.1
         self.LEFT_MOTOR_PINS = (22, 27)
         self.RIGHT_MOTOR_PINS = (6, 5)
         self.LEFT_ENCODER_PINS = (23, 24)
         self.RIGHT_ENCODER_PINS = (17, 25)
-        self.PID_FORWARD_CONSTANTS = (0.008, 0.0, 0.0)
-        self.PID_TURN_CONSTANTS = (0.008, 0, 0)
+        self.PID_FORWARD_CONSTANTS = (0.005, 0.0, 0.0)
+        self.PID_TURN_CONSTANTS = (0.012, 0, 0)
 
         # PIDs
         self.left_pid = PID(*self.PID_FORWARD_CONSTANTS)
@@ -47,6 +47,8 @@ class MotorModule(rm.ProtoModule):
         self.right_pid.sample_time = 1 / self.FREQUENCY
         self.turn_pid.sample_time = 1 / self.FREQUENCY
         self.left_pid.output_limits = (-1 / self.CATCHUP_MODIFIER, 1 / self.CATCHUP_MODIFIER)
+        # self.right_pid.output_limits = (-1, 1)
+        # self.left_pid.output_limits = (-1, 1)
         self.right_pid.output_limits = (-1 / self.CATCHUP_MODIFIER, 1 / self.CATCHUP_MODIFIER)
         self.turn_pid.output_limits = (-1 / self.TURN_MODIFIER, 1 / self.TURN_MODIFIER)
 
@@ -63,7 +65,10 @@ class MotorModule(rm.ProtoModule):
         # Gyro
         i2c = board.I2C()
         tca = adafruit_tca9548a.TCA9548A(i2c)
-        self.sensor = adafruit_bno055.BNO055_I2C(tca[1]) 
+        self.sensor = adafruit_bno055.BNO055_I2C(tca[1])
+        self.sensor.offsets_gyroscope = (-1, 129, 0)
+        self.sensor.offsets_accelerometer = (3, -52, -8)
+        self.sensor.offsets_magnetometer = (54, 773, 286) 
 
         self.left_pid.setpoint = -self.left_encoder.read()
         self.right_pid.setpoint = self.right_encoder.read()
@@ -76,7 +81,7 @@ class MotorModule(rm.ProtoModule):
     
     # Based on current direction, uses _turn_real to turn to the given direction
     def _turn(self, new_direction: Direction):
-        self.turn_pid.reset()
+        # self.turn_pid.reset()
         turnValue = int(self.current_direction) - int(new_direction)
         # If turnValue is 0, we don't need to turn
         if turnValue == 0:
@@ -95,8 +100,11 @@ class MotorModule(rm.ProtoModule):
 
     # Moves forward one square
     def _forward(self):
-        self.left_pid.setpoint -= self.MOVE_ROTATIONS
-        self.right_pid.setpoint -= self.MOVE_ROTATIONS
+        # self.left_pid.setpoint -= self.MOVE_ROTATIONS
+        # self.right_pid.setpoint -= self.MOVE_ROTATIONS
+        self.left_pid.setpoint = -self.left_encoder.read() - self.MOVE_ROTATIONS
+        self.right_pid.setpoint = self.right_encoder.read() - self.MOVE_ROTATIONS
+        print("aiming left encoder for", self.left_pid.setpoint, "and right for", self.right_pid.setpoint)
 
     # Takes a direction, turns to that direction, then moves forward
     def _execute(self, direction: Direction):
@@ -107,7 +115,7 @@ class MotorModule(rm.ProtoModule):
         self.left_pid.reset()
         self.right_pid.reset()
         # Move
-        self._forward()
+        # self._forward()
 
     # Adds a movement action (direction) to the queue
     def add_action(self, action: Direction):
@@ -132,6 +140,7 @@ class MotorModule(rm.ProtoModule):
             # If close enough, stop turning
             if abs(angle - self.turn_pid.setpoint) < self.TURN_ERROR:
                 self.mode = Mode.forward
+                self._forward()
                 self.left_motor.stop()
                 self.right_motor.stop()
                 return
@@ -160,11 +169,14 @@ class MotorModule(rm.ProtoModule):
                 self.right_motor.forward(speed)
             
         elif self.mode == Mode.forward:
+
             left_remaining = abs(self.left_pid.setpoint - -self.left_encoder.read())
             right_remaining = abs(self.right_pid.setpoint - self.right_encoder.read())
             
             # If reached target (both)
             if left_remaining < self.STOPPING_ERROR and right_remaining < self.STOPPING_ERROR:
+                self.left_motor.stop()
+                self.right_motor.stop()
                 self.mode = Mode.stop
 
             # Get speed from PID
@@ -177,7 +189,7 @@ class MotorModule(rm.ProtoModule):
             elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
                 right_speed *= self.CATCHUP_MODIFIER
 
-            print(f"   Left: target {str(self.left_pid.setpoint).rjust(5)} | current {str(-self.left_encoder.read()).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.right_encoder.read()).rjust(5)} | speed {str(right_speed).rjust(5)}")
+            print(f"   Left: target {str(self.left_pid.setpoint).rjust(5)} | current {str(-self.left_encoder.read()).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.right_pid.setpoint).rjust(5)} | current {str(self.right_encoder.read()).rjust(5)} | speed {str(right_speed).rjust(5)}")
 
             # Set motor movement based on speed
             if left_speed == 0:
