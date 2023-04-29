@@ -124,7 +124,6 @@ class MotorModule(rm.ProtoModule):
             self.mode = Mode.stop
         
         if self.mode == Mode.stop:
-            print("Hey")
             self.left_motor.stop()
             self.right_motor.stop()
         elif self.mode == Mode.turn:
@@ -132,7 +131,7 @@ class MotorModule(rm.ProtoModule):
 
             # If close enough, stop turning
             if abs(angle - self.turn_pid.setpoint) < self.TURN_ERROR:
-                self.mode = Mode.forward
+                self.mode = Mode.stop
                 self.left_motor.stop()
                 self.right_motor.stop()
                 return
