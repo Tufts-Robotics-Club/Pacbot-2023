@@ -116,10 +116,7 @@ class MotorModule(rm.ProtoModule):
 
     # Main loop
     def tick(self):
-        left_remaining = abs(self.left_pid.setpoint - self.left_encoder.read())
-        right_remaining = abs(self.right_pid.setpoint - self.right_encoder.read())
-        left_speed = 0
-        right_speed = 0
+        
 
         # If reached target (both)
         if left_remaining < self.STOPPING_ERROR and right_remaining < self.STOPPING_ERROR:
@@ -169,15 +166,18 @@ class MotorModule(rm.ProtoModule):
                 self.right_motor.forward(speed)
             
         elif self.mode == Mode.forward:
+            left_remaining = abs(self.left_pid.setpoint - self.left_encoder.read())
+            right_remaining = abs(self.right_pid.setpoint - self.right_encoder.read())
+            
             # Get speed from PID
             left_speed = self.left_pid(self.left_encoder.read()) * self.MOVE_MODIFIER
             right_speed = self.right_pid(self.right_encoder.read()) * self.MOVE_MODIFIER
 
             # Modify left and right speeds if difference is greater than error
-            if left_remaining < right_remaining - self.DIFFERENCE_ERROR:
-                left_speed *= self.CATCHUP_MODIFIER
-            elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
-                right_speed *= self.CATCHUP_MODIFIER
+            # if left_remaining < right_remaining - self.DIFFERENCE_ERROR:
+            #     left_speed *= self.CATCHUP_MODIFIER
+            # elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
+            #     right_speed *= self.CATCHUP_MODIFIER
 
             print(f"   Left: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.left_encoder.read()).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.right_encoder.read()).rjust(5)} | speed {str(right_speed).rjust(5)}")
 
