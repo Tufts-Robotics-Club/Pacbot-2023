@@ -68,7 +68,7 @@ class MotorModule(rm.ProtoModule):
 
         self.left_pid.setpoint = self.left_encoder.steps
         self.right_pid.setpoint = self.right_encoder.steps
-        self.turn_pid.setpoint = self.START_ANGLE
+        # self.turn_pid.setpoint = self.START_ANGLE
 
         self.current_direction = Direction.W
         self.mode = Mode.stop
