@@ -64,11 +64,11 @@ class MotorModule(rm.ProtoModule):
         i2c = board.I2C()
         tca = adafruit_tca9548a.TCA9548A(i2c)
         self.sensor = adafruit_bno055.BNO055_I2C(tca[1])
-        self.turn_pid.setpoint = 259.6875
 
         self.left_pid.setpoint = self.left_encoder.steps
         self.right_pid.setpoint = self.right_encoder.steps
-        # self.turn_pid.setpoint = self.START_ANGLE
+        self.turn_countdown = 100
+        self.initial_turn_set = False
 
         self.current_direction = Direction.W
         self.mode = Mode.stop
@@ -126,10 +126,12 @@ class MotorModule(rm.ProtoModule):
         
         if self.mode == Mode.stop:
             # Setting starting angle in init gets mad :(
-            # if self.START_ANGLE == 0:
-            #     self.START_ANGLE = self.sensor.euler[0]
-            #     self.turn_pid.setpoint = self.START_ANGLE
-            # print(self.turn_pid.setpoint)
+            start_angle = self.sensor.euler[0]
+            if start_angle >= 0 and self.turn_countdown <= 0 and not self.initial_turn_set:
+                self.turn_pid.setpoint = start_angle
+                self.initial_turn_set = True
+            self.turn_countdown -= 1
+            print(self.turn_pid.setpoint)
             self.left_motor.stop()
             self.right_motor.stop()
         elif self.mode == Mode.turn:
