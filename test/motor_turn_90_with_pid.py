@@ -54,8 +54,8 @@ def turn90():
 
     TARGET_ANGLE = TARGET_ANGLE + OFFSET
 
-    range_upper = TARGET_ANGLE + 3
-    range_lower = TARGET_ANGLE - 3
+    range_upper = TARGET_ANGLE + 2
+    range_lower = TARGET_ANGLE - 2
     print("Range: "+ str(range_lower) + ", " + str(range_upper))
 
     while True:
@@ -67,7 +67,7 @@ def turn90():
     # elif current_angle > 360:
     #     current_angle = current_angle
         else:
-            if current_angle < TARGET_ANGLE + 3 and current_angle > TARGET_ANGLE - 3:
+            if current_angle < TARGET_ANGLE + 2 and current_angle > TARGET_ANGLE - 2:
                 print("I am in range!", current_angle)
                 motor1.stop()
                 motor2.stop()
@@ -100,4 +100,5 @@ def turn90():
 
 
 for i in range(0, 2):
+    print("I'm going on ", i)
     turn90()
