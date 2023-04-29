@@ -23,7 +23,7 @@ class MotorModule(rm.ProtoModule):
         self.FREQUENCY = 100
 
         # How far from the target distance is acceptible before stopping
-        self.STOPPING_ERROR = 1
+        self.STOPPING_ERROR = 10
         self.TURN_ERROR = 5
         # How much the two wheels can be different before we try to compensate
         self.DIFFERENCE_ERROR = 0.1
@@ -31,13 +31,13 @@ class MotorModule(rm.ProtoModule):
         self.MOVE_MODIFIER = 1.0
         self.TURN_MODIFIER = 1.0
         # 6 inches / (Wheel diameter * pi * 1 in / 25.2 mm)
-        self.MOVE_ROTATIONS = 10 # 6 / (32 * math.pi / 25.4)
+        self.MOVE_ROTATIONS = 500 # 6 / (32 * math.pi / 25.4)
         self.CATCHUP_MODIFIER = 1.1
         self.LEFT_MOTOR_PINS = (22, 27)
         self.RIGHT_MOTOR_PINS = (6, 5)
         self.LEFT_ENCODER_PINS = (23, 24)
         self.RIGHT_ENCODER_PINS = (17, 25)
-        self.PID_FORWARD_CONSTANTS = (0.1, 0.0, 0.0)
+        self.PID_FORWARD_CONSTANTS = (0.008, 0.0, 0.0)
         self.PID_TURN_CONSTANTS = (0.008, 0, 0)
 
         # PIDs
