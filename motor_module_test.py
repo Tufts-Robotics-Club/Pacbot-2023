@@ -1,6 +1,7 @@
 import robomodules as rm
 from messages import MsgType, message_buffers, PacmanDirection, GyroYaw
-from gpiozero import PhaseEnableMotor, RotaryEncoder
+from gpiozero import PhaseEnableMotor
+import Encoder
 from enum import IntEnum
 import math
 import os
@@ -33,9 +34,9 @@ class MotorModule(rm.ProtoModule):
         self.MOVE_ROTATIONS = 10 # 6 / (32 * math.pi / 25.4)
         self.CATCHUP_MODIFIER = 1.1
         self.LEFT_MOTOR_PINS = (27, 22)
-        self.RIGHT_MOTOR_PINS = (5, 6)
+        self.RIGHT_MOTOR_PINS = (6, 5)
         self.LEFT_ENCODER_PINS = (23, 24)
-        self.RIGHT_ENCODER_PINS = (14, 15)
+        self.RIGHT_ENCODER_PINS = (17, 25)
         self.PID_FORWARD_CONSTANTS = (1.0, 0.1, 0.05)
         self.PID_TURN_CONSTANTS = (0.008, 0, 0)
 
@@ -58,15 +59,15 @@ class MotorModule(rm.ProtoModule):
         self.left_motor = PhaseEnableMotor(*self.LEFT_MOTOR_PINS)
         self.right_motor = PhaseEnableMotor(*self.RIGHT_MOTOR_PINS)
         # Encoders
-        self.left_encoder = RotaryEncoder(*self.LEFT_ENCODER_PINS, max_steps=0)
-        self.right_encoder = RotaryEncoder(*self.RIGHT_ENCODER_PINS, max_steps=0)
+        self.left_encoder = Encoder.Encoder(*self.LEFT_ENCODER_PINS, max_steps=0)
+        self.right_encoder = Encoder.Encoder(*self.RIGHT_ENCODER_PINS, max_steps=0)
         # Gyro
         i2c = board.I2C()
         tca = adafruit_tca9548a.TCA9548A(i2c)
         self.sensor = adafruit_bno055.BNO055_I2C(tca[1]) 
 
-        self.left_pid.setpoint = self.left_encoder.steps
-        self.right_pid.setpoint = self.right_encoder.steps
+        self.left_pid.setpoint = self.left_encoder.read()
+        self.right_pid.setpoint = self.right_encoder.read()
         self.turn_countdown = 100
         self.initial_turn_set = False
 
@@ -115,8 +116,8 @@ class MotorModule(rm.ProtoModule):
 
     # Main loop
     def tick(self):
-        left_remaining = abs(self.left_pid.setpoint - self.left_encoder.steps)
-        right_remaining = abs(self.right_pid.setpoint - self.right_encoder.steps)
+        left_remaining = abs(self.left_pid.setpoint - self.left_encoder.read())
+        right_remaining = abs(self.right_pid.setpoint - self.right_encoder.read())
         left_speed = 0
         right_speed = 0
 
@@ -169,8 +170,8 @@ class MotorModule(rm.ProtoModule):
             
         elif self.mode == Mode.forward:
             # Get speed from PID
-            left_speed = self.left_pid(self.left_encoder.steps) * self.MOVE_MODIFIER
-            right_speed = self.right_pid(self.right_encoder.steps) * self.MOVE_MODIFIER
+            left_speed = self.left_pid(self.left_encoder.read()) * self.MOVE_MODIFIER
+            right_speed = self.right_pid(self.right_encoder.read()) * self.MOVE_MODIFIER
 
             # Modify left and right speeds if difference is greater than error
             if left_remaining < right_remaining - self.DIFFERENCE_ERROR:
