@@ -124,6 +124,7 @@ class MotorModule(rm.ProtoModule):
             self.mode = Mode.stop
         
         if self.mode == Mode.stop:
+            print("Hey")
             self.left_motor.stop()
             self.right_motor.stop()
         elif self.mode == Mode.turn:
