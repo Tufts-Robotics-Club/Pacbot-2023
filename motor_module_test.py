@@ -96,7 +96,7 @@ class MotorModule(rm.ProtoModule):
 
     # Moves forward one square
     def _forward(self):
-        self.left_pid.setpoint += self.MOVE_ROTATIONS
+        self.left_pid.setpoint -= self.MOVE_ROTATIONS
         self.right_pid.setpoint -= self.MOVE_ROTATIONS
 
     # Takes a direction, turns to that direction, then moves forward
