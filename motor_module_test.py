@@ -117,11 +117,6 @@ class MotorModule(rm.ProtoModule):
     # Main loop
     def tick(self):
         
-
-        # If reached target (both)
-        if left_remaining < self.STOPPING_ERROR and right_remaining < self.STOPPING_ERROR:
-            self.mode = Mode.stop
-        
         if self.mode == Mode.stop:
             # Setting starting angle in init gets mad :(
             start_angle = self.sensor.euler[0]
@@ -169,6 +164,10 @@ class MotorModule(rm.ProtoModule):
             left_remaining = abs(self.left_pid.setpoint - self.left_encoder.read())
             right_remaining = abs(self.right_pid.setpoint - self.right_encoder.read())
             
+            # If reached target (both)
+            if left_remaining < self.STOPPING_ERROR and right_remaining < self.STOPPING_ERROR:
+                self.mode = Mode.stop
+
             # Get speed from PID
             left_speed = self.left_pid(self.left_encoder.read()) * self.MOVE_MODIFIER
             right_speed = self.right_pid(self.right_encoder.read()) * self.MOVE_MODIFIER
