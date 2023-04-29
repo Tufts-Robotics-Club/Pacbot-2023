@@ -23,7 +23,7 @@ class MotorModule(rm.ProtoModule):
 
         # How far from the target distance is acceptible before stopping
         self.STOPPING_ERROR = 1
-        self.TURN_ERROR = 1
+        self.TURN_ERROR = 5
         # How much the two wheels can be different before we try to compensate
         self.DIFFERENCE_ERROR = 0.1
         
@@ -68,7 +68,7 @@ class MotorModule(rm.ProtoModule):
 
         self.left_pid.setpoint = self.left_encoder.steps
         self.right_pid.setpoint = self.right_encoder.steps
-        self.turn_pid.setpoint = self.sensor.euler[0]
+        self.turn_pid.setpoint = self.START_ANGLE
 
         self.current_direction = Direction.W
         self.mode = Mode.stop
@@ -128,7 +128,7 @@ class MotorModule(rm.ProtoModule):
             self.left_motor.stop()
             self.right_motor.stop()
         elif self.mode == Mode.turn:
-            angle = (self.sensor.euler[0] - self.START_ANGLE) % 360
+            angle = self.sensor.euler[0]
 
             # If close enough, stop turning
             if abs(angle - self.turn_pid.setpoint) < self.TURN_ERROR:
