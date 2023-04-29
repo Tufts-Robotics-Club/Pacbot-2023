@@ -31,7 +31,7 @@ START_ANGLE = sensor.euler[0] #ideally 0, often 359
 #     elif TARGET_ANGLE < -MAX_ANGLE:
 #         TARGET_ANGLE = -MAX_ANGLE
 
-TARGET_ANGLE = (START_ANGLE + TURN_ANGLE) % 360 #90
+TARGET_ANGLE = (START_ANGLE + TURN_ANGLE) #90
 print("Target angle: "+ str(TARGET_ANGLE))
 
 OFFSET = 0
@@ -45,6 +45,8 @@ TARGET_ANGLE = TARGET_ANGLE + OFFSET
 pid = PID(0.005, 0, 0, setpoint=TARGET_ANGLE)
 pid.output_limits = (-1, 1)
 
+
+
 range_upper = TARGET_ANGLE + 2
 range_lower = TARGET_ANGLE - 2
 print("Range: "+ str(range_lower) + ", " + str(range_upper))
@@ -55,8 +57,8 @@ while True:
         print("none :(")
     elif current_angle < 0:
         current_angle = 0
-    elif current_angle > 360:
-        current_angle = 360
+   # elif current_angle > 360:
+   #     current_angle = current_angle
     else:
         if current_angle < TARGET_ANGLE + 2 and current_angle > TARGET_ANGLE - 2:
             print("I am in range!", current_angle)
