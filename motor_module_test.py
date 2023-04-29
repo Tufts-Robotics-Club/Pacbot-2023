@@ -37,7 +37,7 @@ class MotorModule(rm.ProtoModule):
         self.RIGHT_MOTOR_PINS = (6, 5)
         self.LEFT_ENCODER_PINS = (23, 24)
         self.RIGHT_ENCODER_PINS = (17, 25)
-        self.PID_FORWARD_CONSTANTS = (1.0, 0.1, 0.05)
+        self.PID_FORWARD_CONSTANTS = (0.1, 0.0, 0.0)
         self.PID_TURN_CONSTANTS = (0.008, 0, 0)
 
         # PIDs
@@ -101,12 +101,12 @@ class MotorModule(rm.ProtoModule):
 
     # Takes a direction, turns to that direction, then moves forward
     def _execute(self, direction: Direction):
-        self.left_pid.reset()
-        self.right_pid.reset()
         self.mode = Mode.turn
         # Turn
         self._turn(direction)
-
+        
+        self.left_pid.reset()
+        self.right_pid.reset()
         # Move
         self._forward()
 

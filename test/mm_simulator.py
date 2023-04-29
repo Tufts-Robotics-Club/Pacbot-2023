@@ -55,7 +55,7 @@ class SimulatedMotorModule():
         self.left_motor = SimulatedMotor(self.left_encoder)
         self.right_motor = SimulatedMotor(self.right_encoder)
 
-        self.PID_FORWARD_CONSTANTS = (1.0, 0.1, 0.05)
+        self.PID_FORWARD_CONSTANTS = (0.1, 0.0, 0.0)
         self.left_pid = PID(*self.PID_FORWARD_CONSTANTS)
         self.right_pid = PID(*self.PID_FORWARD_CONSTANTS)
         self.left_pid.sample_time = 1 / self.FREQUENCY
@@ -63,8 +63,8 @@ class SimulatedMotorModule():
         self.left_pid.output_limits = (-1 / self.MOVE_MODIFIER, 1 / self.MOVE_MODIFIER)
         self.right_pid.output_limits = (-1 / self.MOVE_MODIFIER, 1 / self.MOVE_MODIFIER)
 
-        self.left_target = 0
-        self.right_target = 0
+        self.left_pid.setpoint = 10
+        self.right_pid.setpoint = 10
 
         WASD_to_Direction = {
             "w": Direction.W,
@@ -109,7 +109,7 @@ class SimulatedMotorModule():
     # Takes a direction, turns to that direction, then moves forward
     def _execute(self, direction: Direction):
         # Turn
-        self._turn(direction)
+        # self._turn(direction)
 
         # Move
         self._forward()
@@ -129,7 +129,7 @@ class SimulatedMotorModule():
         # elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
         #     right_speed *= self.CATCHUP_MODIFIER
 
-        print(f"   Left: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.left_encoder.read()).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.right_encoder.read()).rjust(5)} | speed {str(right_speed).rjust(5)}")
+        print(f"   Left: target {str(round(self.left_pid.setpoint, 2)).rjust(5)} | current {str(round(self.left_encoder.read(), 2)).rjust(5)} | speed {str(round(left_speed, 2)).rjust(5)}  ===  Right: target {str(round(self.left_pid.setpoint, 2)).rjust(5)} | current {str(round(self.right_encoder.read(), 2)).rjust(5)} | speed {str(round(right_speed, 2)).rjust(5)}")
 
         # Set motor movement based on speed
         if left_speed == 0:
@@ -155,7 +155,7 @@ def main():
     mm = SimulatedMotorModule()
     while not mm.done:
         mm.tick()
-        time.sleep(0.01)
+        time.sleep(1 / mm.FREQUENCY)
 
 if __name__ == "__main__":
     main()
