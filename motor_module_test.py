@@ -127,7 +127,7 @@ class MotorModule(rm.ProtoModule):
             self.left_motor.stop()
             self.right_motor.stop()
         elif self.mode == Mode.turn:
-            print(f"   Target: {str(self.turn_pid.setpoint).rjust(5)} | Current: {str(self.sensor.euler[0]).rjust(5)}")
+            
             # If close enough, stop turning
             if abs(self.sensor.euler[0] - self.turn_pid.setpoint) < self.TURN_ERROR:
                 self.mode = Mode.forward
@@ -138,6 +138,8 @@ class MotorModule(rm.ProtoModule):
             # Discard bad sensor values
             if self.sensor.euler[0] < 0:
                 return
+        
+            print(f"   Target: {str(self.turn_pid.setpoint).rjust(5)} | Current: {str(self.sensor.euler[0]).rjust(5)}")
 
             # Change PID target if too far away
             # if self.sensor.euler[0] > self.turn_pid.setpoint + 180:
