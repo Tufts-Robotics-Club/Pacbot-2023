@@ -11,8 +11,8 @@ rotar2 = RotaryEncoder(14, 15, max_steps=0)
 counter = 0
 while counter < 100:
     print(rotar1.steps, rotar2.steps)
-    motor1.backward(0.5)
-    motor2.backward(0.5)
+    motor1.backward(0.1)
+    motor2.backward(0.1)
     counter += 1
     sleep(0.05)
 
