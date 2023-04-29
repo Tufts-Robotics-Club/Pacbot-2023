@@ -66,8 +66,8 @@ class MotorModule(rm.ProtoModule):
         tca = adafruit_tca9548a.TCA9548A(i2c)
         self.sensor = adafruit_bno055.BNO055_I2C(tca[1]) 
 
-        self.left_pid.setpoint = self.left_encoder.read()
-        self.right_pid.setpoint = -self.right_encoder.read()
+        self.left_pid.setpoint = -self.left_encoder.read()
+        self.right_pid.setpoint = self.right_encoder.read()
         self.turn_countdown = 100
         self.initial_turn_set = False
 
@@ -161,16 +161,16 @@ class MotorModule(rm.ProtoModule):
                 self.right_motor.forward(speed)
             
         elif self.mode == Mode.forward:
-            left_remaining = abs(self.left_pid.setpoint - self.left_encoder.read())
-            right_remaining = abs(self.right_pid.setpoint - -self.right_encoder.read())
+            left_remaining = abs(self.left_pid.setpoint - -self.left_encoder.read())
+            right_remaining = abs(self.right_pid.setpoint - self.right_encoder.read())
             
             # If reached target (both)
             if left_remaining < self.STOPPING_ERROR and right_remaining < self.STOPPING_ERROR:
                 self.mode = Mode.stop
 
             # Get speed from PID
-            left_speed = self.left_pid(self.left_encoder.read()) * self.MOVE_MODIFIER
-            right_speed = self.right_pid(-self.right_encoder.read()) * self.MOVE_MODIFIER
+            left_speed = self.left_pid(-self.left_encoder.read()) * self.MOVE_MODIFIER
+            right_speed = self.right_pid(self.right_encoder.read()) * self.MOVE_MODIFIER
 
             # Modify left and right speeds if difference is greater than error
             # if left_remaining < right_remaining - self.DIFFERENCE_ERROR:
@@ -178,7 +178,7 @@ class MotorModule(rm.ProtoModule):
             # elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
             #     right_speed *= self.CATCHUP_MODIFIER
 
-            print(f"   Left: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.left_encoder.read()).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.left_pid.setpoint).rjust(5)} | current {str(-self.right_encoder.read()).rjust(5)} | speed {str(right_speed).rjust(5)}")
+            print(f"   Left: target {str(self.left_pid.setpoint).rjust(5)} | current {str(-self.left_encoder.read()).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.right_encoder.read()).rjust(5)} | speed {str(right_speed).rjust(5)}")
 
             # Set motor movement based on speed
             if left_speed == 0:
