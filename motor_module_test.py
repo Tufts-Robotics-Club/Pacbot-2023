@@ -37,7 +37,7 @@ class MotorModule(rm.ProtoModule):
         self.LEFT_ENCODER_PINS = (23, 24)
         self.RIGHT_ENCODER_PINS = (14, 15)
         self.PID_FORWARD_CONSTANTS = (1.0, 0.1, 0.05)
-        self.PID_TURN_CONSTANTS = (1.0, 0.1, 0.05)
+        self.PID_TURN_CONSTANTS = (0.008, 0, 0)
 
         # PIDs
         self.left_pid = PID(*self.PID_FORWARD_CONSTANTS)
