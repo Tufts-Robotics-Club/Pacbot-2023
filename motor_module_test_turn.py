@@ -127,6 +127,8 @@ class MotorModule(rm.ProtoModule):
         if self.mode == Mode.stop:
             self.left_motor.stop()
             self.right_motor.stop()
+            # Print turning target (for testing purposes)
+            print(f"Target: {self.turn_pid.setpoint} | Current: {self.sensor.euler[0]}")
         elif self.mode == Mode.turn:
             angle = self.sensor.euler[0]
 
