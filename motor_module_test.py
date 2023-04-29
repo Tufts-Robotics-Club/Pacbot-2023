@@ -136,10 +136,10 @@ class MotorModule(rm.ProtoModule):
                 return
 
             # Change PID target if too far away
-            if self.sensor.euler[0] > self.turn_pid.setpoint + 180:
-                self.turn_pid.setpoint += 360
-            elif self.sensor.euler[0] < self.turn_pid.setpoint - 180:
-                self.turn_pid.setpoint -= 360
+            # if self.sensor.euler[0] > self.turn_pid.setpoint + 180:
+            #     self.turn_pid.setpoint += 360
+            # elif self.sensor.euler[0] < self.turn_pid.setpoint - 180:
+            #     self.turn_pid.setpoint -= 360
 
             # Get speed from PID
             speed = self.turn_pid(self.sensor.euler[0])
