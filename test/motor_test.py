@@ -4,8 +4,8 @@ from time import sleep
 
 motor1 = PhaseEnableMotor(22, 27)
 motor2 = PhaseEnableMotor(6, 5)
-rotar1 = Encoder(23, 24)
-rotar2 = Encoder(17, 25)
+rotar1 = Encoder.Encoder(23, 24)
+rotar2 = Encoder.Encoder(17, 25)
 # motor1.backward(0.5)
 # motor2.forward(0.5)
 
