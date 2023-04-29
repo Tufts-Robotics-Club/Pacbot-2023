@@ -63,7 +63,7 @@ class MotorModule(rm.ProtoModule):
         # Gyro
         i2c = board.I2C()
         tca = adafruit_tca9548a.TCA9548A(i2c)
-        self.sensor = adafruit_bno055.BNO055_I2C(tca[0]) 
+        self.sensor = adafruit_bno055.BNO055_I2C(tca[1]) 
 
         self.left_pid.setpoint = self.left_encoder.steps
         self.right_pid.setpoint = self.right_encoder.steps
