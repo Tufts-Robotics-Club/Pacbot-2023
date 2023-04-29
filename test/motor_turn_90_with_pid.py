@@ -46,7 +46,7 @@ if (START_ANGLE > TARGET_ANGLE):
 
 # DELTA = START_ANGLE - OFFSET
 
-pid = PID(0.006, 0, 0, setpoint=TARGET_ANGLE)
+pid = PID(0.007, 0, 0, setpoint=TARGET_ANGLE)
 pid.output_limits = (-1, 1)
 
 TARGET_ANGLE = TARGET_ANGLE + OFFSET
