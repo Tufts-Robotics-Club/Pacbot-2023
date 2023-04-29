@@ -45,8 +45,8 @@ pid.output_limits = (-1, 1)
 
 TARGET_ANGLE = TARGET_ANGLE + OFFSET
 
-range_upper = TARGET_ANGLE + 2
-range_lower = TARGET_ANGLE - 2
+range_upper = TARGET_ANGLE + 1
+range_lower = TARGET_ANGLE - 1
 print("Range: "+ str(range_lower) + ", " + str(range_upper))
 
 while True:
@@ -58,7 +58,7 @@ while True:
    # elif current_angle > 360:
    #     current_angle = current_angle
     else:
-        if current_angle < TARGET_ANGLE + 2 and current_angle > TARGET_ANGLE - 2:
+        if current_angle < TARGET_ANGLE + 1 and current_angle > TARGET_ANGLE - 1:
             print("I am in range!", current_angle)
             motor1.stop()
             motor2.stop()
