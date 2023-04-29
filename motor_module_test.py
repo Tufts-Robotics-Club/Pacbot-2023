@@ -13,7 +13,7 @@ ADDRESS = os.environ.get("LOCAL_ADDRESS", "localhost")
 PORT = os.environ.get("LOCAL_PORT", 11295)
 
 Direction = IntEnum("Direction", ["W", "A", "S", "D"])
-Mode = IntEnum("Mode", ["forward turn stop"])
+Mode = IntEnum("Mode", ["forward", "turn", "stop"])
 
 class MotorModule(rm.ProtoModule):
     def __init__(self, addr, port):
