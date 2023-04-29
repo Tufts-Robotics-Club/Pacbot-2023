@@ -39,7 +39,7 @@ def turn90():
     elif START_ANGLE > 360:
             START_ANGLE = 360
 
-    TARGET_ANGLE = (START_ANGLE + TURN_ANGLE) #90
+    TARGET_ANGLE = (START_ANGLE + TURN_ANGLE) % 360 #90
 
     print("Target angle: "+ str(TARGET_ANGLE))
 
