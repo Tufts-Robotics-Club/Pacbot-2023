@@ -43,14 +43,14 @@ if (START_ANGLE > TARGET_ANGLE):
 pid = PID(0.005, 0, 0, setpoint=TARGET_ANGLE)
 pid.output_limits = (-1, 1)
 
-TARGET_ANGLE = TARGET_ANGLE + OFFSET
+# TARGET_ANGLE = TARGET_ANGLE + OFFSET
 
 range_upper = TARGET_ANGLE + 2
 range_lower = TARGET_ANGLE - 2
 print("Range: "+ str(range_lower) + ", " + str(range_upper))
 
 while True:
-    current_angle = sensor.euler[0] + OFFSET
+    current_angle = sensor.euler[0] # + OFFSET
     if current_angle is None:
         print("none :(")
     elif current_angle < 0:
@@ -65,7 +65,7 @@ while True:
             sleep(0.1)
             print("Stop motor")
             break
-        control = pid(current_angle)
+        control = pid(current_angle - OFFSET)
         print("control:", control, "angle:", current_angle, "target:", TARGET_ANGLE)
         if control < 0:
             motor1.backward(-control)
