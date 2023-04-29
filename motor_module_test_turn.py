@@ -128,8 +128,8 @@ class MotorModule(rm.ProtoModule):
             # Setting starting angle in init gets mad :(
             if self.START_ANGLE == 0:
                 self.START_ANGLE = self.sensor.euler[0]
-                self.turn_pid.setpoint = self.START_ANGLE
-            print(self.turn_pid.setpoint)
+            #     self.turn_pid.setpoint = self.START_ANGLE
+            # print(self.turn_pid.setpoint)
             self.left_motor.stop()
             self.right_motor.stop()
         elif self.mode == Mode.turn:
