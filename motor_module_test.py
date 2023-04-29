@@ -137,6 +137,7 @@ class MotorModule(rm.ProtoModule):
 
             # Discard bad sensor values
             if self.sensor.euler[0] < 0:
+                print("Bad sensor value")
                 return
         
             print(f"   Target: {str(self.turn_pid.setpoint).rjust(5)} | Current: {str(self.sensor.euler[0]).rjust(5)}")
