@@ -68,11 +68,11 @@ while True:
         control = pid(current_angle - OFFSET)
         print("control:", control, "angle:", current_angle, "target:", TARGET_ANGLE)
         if control < 0:
-            motor1.backward(-control)
-            motor2.forward(-control)
+            motor2.backward(-control)
+            motor1.forward(-control)
         else:
-            motor1.forward(control)
-            motor2.backward(control)
+            motor2.forward(control)
+            motor1.backward(control)
     sleep(0.1)
 
 
