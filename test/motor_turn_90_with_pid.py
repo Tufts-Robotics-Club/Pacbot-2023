@@ -51,7 +51,7 @@ def turn90():
 
     TARGET_ANGLE = TARGET_ANGLE + OFFSET
 
-    pid = PID(0.01, 0, 0, setpoint=TARGET_ANGLE)
+    pid = PID(0.01, 0, 0, setpoint=TARGET_ANGLE) #90
     pid.output_limits = (-1, 1)
 
     range_upper = TARGET_ANGLE + 2
@@ -59,11 +59,11 @@ def turn90():
     print("Range: "+ str(range_lower) + ", " + str(range_upper))
 
     while True:
-        current_angle = sensor.euler[0] + OFFSET
+        current_angle = (sensor.euler[0] + OFFSET) % 360
         if current_angle is None:
             print("none :(")
         elif current_angle < 0:
-            current_angle = 0
+            continue
     # elif current_angle > 360:
     #     current_angle = current_angle
         else:
@@ -74,7 +74,7 @@ def turn90():
                 sleep(0.1)
                 print("Stop motor")
                 break
-            control = pid(current_angle - OFFSET)
+            control = pid(current_angle)
             print("control:", control, "angle:", current_angle, "target:", TARGET_ANGLE)
             if control < 0:
                 motor2.backward(-control)
