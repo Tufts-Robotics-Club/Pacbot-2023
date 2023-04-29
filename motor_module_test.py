@@ -67,7 +67,8 @@ class MotorModule(rm.ProtoModule):
 
         self.left_pid.setpoint = self.left_encoder.steps
         self.right_pid.setpoint = self.right_encoder.steps
-        self.turn_pid.setpoint = self.sensor.euler[0]
+        self.turn_countdown = 100
+        self.initial_turn_set = False
 
         self.current_direction = Direction.W
         self.mode = Mode.stop
@@ -124,6 +125,13 @@ class MotorModule(rm.ProtoModule):
             self.mode = Mode.stop
         
         if self.mode == Mode.stop:
+            # Setting starting angle in init gets mad :(
+            start_angle = self.sensor.euler[0]
+            if start_angle >= 0 and self.turn_countdown <= 0 and not self.initial_turn_set:
+                self.turn_pid.setpoint = start_angle
+                self.initial_turn_set = True
+            self.turn_countdown -= 1
+
             self.left_motor.stop()
             self.right_motor.stop()
         elif self.mode == Mode.turn:
@@ -131,7 +139,7 @@ class MotorModule(rm.ProtoModule):
 
             # If close enough, stop turning
             if abs(angle - self.turn_pid.setpoint) < self.TURN_ERROR:
-                self.mode = Mode.forward
+                self.mode = Mode.stop
                 self.left_motor.stop()
                 self.right_motor.stop()
                 return
