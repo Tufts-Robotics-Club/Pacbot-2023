@@ -131,7 +131,7 @@ class MotorModule(rm.ProtoModule):
 
             # If close enough, stop turning
             if abs(angle - self.turn_pid.setpoint) < self.TURN_ERROR:
-                self.mode = Mode.stop
+                self.mode = Mode.forward
                 self.left_motor.stop()
                 self.right_motor.stop()
                 return
