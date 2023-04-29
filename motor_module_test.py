@@ -31,7 +31,6 @@ class MotorModule(rm.ProtoModule):
         self.TURN_MODIFIER = 1.0
         # 6 inches / (Wheel diameter * pi * 1 in / 25.2 mm)
         self.MOVE_ROTATIONS = 10 # 6 / (32 * math.pi / 25.4)
-        self.TURN_DISTANCE = 1.0
         self.CATCHUP_MODIFIER = 1.1
         self.LEFT_MOTOR_PINS = (19, 26)
         self.RIGHT_MOTOR_PINS = (5, 6)
@@ -83,13 +82,13 @@ class MotorModule(rm.ProtoModule):
             return
         # If turnValue is 2 or -2, we need to turn 180 degrees
         elif turnValue == 2 or turnValue == -2:
-            self.turn_pid.setpoint += 2 * self.TURN_DISTANCE * 90
+            self.turn_pid.setpoint += 2 * 90
         # If turnValue is 1 or -3, we need to turn 90 degrees
         elif turnValue == 1 or turnValue == -3:
-            self.turn_pid.setpoint += 1 * self.TURN_DISTANCE * 90
+            self.turn_pid.setpoint += 1 * 90
         # If turnValue is -1 or 3, we need to turn -90 degrees
         elif turnValue == -1 or turnValue == 3:
-            self.turn_pid.setpoint += -1 * self.TURN_DISTANCE * 90
+            self.turn_pid.setpoint += -1 * 90
         # Set current direction to new direction
         self.current_direction = new_direction
 
@@ -135,6 +134,12 @@ class MotorModule(rm.ProtoModule):
                 self.right_motor.stop()
                 return
 
+            # Change PID target if too far away
+            if self.sensor.euler[0] > self.turn_pid.setpoint + 180:
+                self.turn_pid.setpoint += 360
+            elif self.sensor.euler[0] < self.turn_pid.setpoint - 180:
+                self.turn_pid.setpoint -= 360
+
             # Get speed from PID
             speed = self.turn_pid(self.sensor.euler[0])
 
@@ -156,7 +161,7 @@ class MotorModule(rm.ProtoModule):
             elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
                 right_speed *= self.CATCHUP_MODIFIER
 
-            print(f"   Left: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.left_encoder.steps).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.right_encoder.steps).rjust(5)} | speed {str(right_speed).rjust(5)}")
+            # print(f"   Left: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.left_encoder.steps).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.right_encoder.steps).rjust(5)} | speed {str(right_speed).rjust(5)}")
 
             # Set motor movement based on speed
             if left_speed == 0:
