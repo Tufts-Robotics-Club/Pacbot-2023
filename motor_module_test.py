@@ -33,7 +33,7 @@ class MotorModule(rm.ProtoModule):
         # 6 inches / (Wheel diameter * pi * 1 in / 25.2 mm)
         self.MOVE_ROTATIONS = 10 # 6 / (32 * math.pi / 25.4)
         self.CATCHUP_MODIFIER = 1.1
-        self.LEFT_MOTOR_PINS = (27, 22)
+        self.LEFT_MOTOR_PINS = (22, 27)
         self.RIGHT_MOTOR_PINS = (6, 5)
         self.LEFT_ENCODER_PINS = (23, 24)
         self.RIGHT_ENCODER_PINS = (17, 25)
