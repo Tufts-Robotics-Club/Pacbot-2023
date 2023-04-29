@@ -38,14 +38,12 @@ OFFSET = 0
 if (START_ANGLE > TARGET_ANGLE):
     OFFSET = 360 - START_ANGLE
 
-TARGET_ANGLE = TARGET_ANGLE + OFFSET
-
 # DELTA = START_ANGLE - OFFSET
 
 pid = PID(0.005, 0, 0, setpoint=TARGET_ANGLE)
 pid.output_limits = (-1, 1)
 
-
+TARGET_ANGLE = TARGET_ANGLE + OFFSET
 
 range_upper = TARGET_ANGLE + 2
 range_lower = TARGET_ANGLE - 2
