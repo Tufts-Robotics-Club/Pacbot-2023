@@ -59,8 +59,8 @@ class MotorModule(rm.ProtoModule):
         self.left_motor = PhaseEnableMotor(*self.LEFT_MOTOR_PINS)
         self.right_motor = PhaseEnableMotor(*self.RIGHT_MOTOR_PINS)
         # Encoders
-        self.left_encoder = Encoder.Encoder(*self.LEFT_ENCODER_PINS, max_steps=0)
-        self.right_encoder = Encoder.Encoder(*self.RIGHT_ENCODER_PINS, max_steps=0)
+        self.left_encoder = Encoder.Encoder(*self.LEFT_ENCODER_PINS)
+        self.right_encoder = Encoder.Encoder(*self.RIGHT_ENCODER_PINS)
         # Gyro
         i2c = board.I2C()
         tca = adafruit_tca9548a.TCA9548A(i2c)
