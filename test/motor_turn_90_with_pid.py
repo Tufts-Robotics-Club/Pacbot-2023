@@ -99,6 +99,6 @@ def turn90():
     #     print(rotar1.steps, rotar2.steps)
 
 
-for i in range(0, 2):
+for i in range(0, 4):
     print("I'm going on ", i)
     turn90()
