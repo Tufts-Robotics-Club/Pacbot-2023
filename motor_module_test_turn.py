@@ -23,7 +23,7 @@ class MotorModule(rm.ProtoModule):
 
         # How far from the target distance is acceptible before stopping
         self.STOPPING_ERROR = 1
-        self.TURN_ERROR = 5
+        self.TURN_ERROR = 1
         # How much the two wheels can be different before we try to compensate
         self.DIFFERENCE_ERROR = 0.1
         
@@ -63,7 +63,8 @@ class MotorModule(rm.ProtoModule):
         # Gyro
         i2c = board.I2C()
         tca = adafruit_tca9548a.TCA9548A(i2c)
-        self.sensor = adafruit_bno055.BNO055_I2C(tca[1]) 
+        self.sensor = adafruit_bno055.BNO055_I2C(tca[1])
+        self.START_ANGLE = self.sensor.euler[0]
 
         self.left_pid.setpoint = self.left_encoder.steps
         self.right_pid.setpoint = self.right_encoder.steps
@@ -127,7 +128,7 @@ class MotorModule(rm.ProtoModule):
             self.left_motor.stop()
             self.right_motor.stop()
         elif self.mode == Mode.turn:
-            angle = self.sensor.euler[0]
+            angle = (self.sensor.euler[0] - self.START_ANGLE) % 360
 
             # If close enough, stop turning
             if abs(angle - self.turn_pid.setpoint) < self.TURN_ERROR:
