@@ -56,7 +56,7 @@ while True:
     elif current_angle < 0:
         current_angle = 0
     elif current_angle > 360:
-        current_angle = 360
+        current_angle = current_angle % 360
     else:
         if current_angle < TARGET_ANGLE + 2 and current_angle > TARGET_ANGLE - 2:
             print("I am in range!", current_angle)
