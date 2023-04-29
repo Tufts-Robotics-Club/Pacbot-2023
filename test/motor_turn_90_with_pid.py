@@ -51,7 +51,7 @@ def turn90():
 
     TARGET_ANGLE = TARGET_ANGLE + OFFSET
 
-    pid = PID(0.01, 0, 0, setpoint=TARGET_ANGLE) #90
+    pid = PID(0.008, 0, 0, setpoint=TARGET_ANGLE) #90
     pid.output_limits = (-1, 1)
 
     range_upper = TARGET_ANGLE + 2
