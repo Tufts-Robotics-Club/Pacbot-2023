@@ -146,7 +146,7 @@ class MotorModule(rm.ProtoModule):
             #     self.turn_pid.setpoint -= 360
 
             # Get speed from PID
-            speed = 0 self.turn_pid(self.sensor.euler[0])
+            speed = self.turn_pid(self.sensor.euler[0])
 
             if speed < 0:
                 self.left_motor.forward(-speed)
