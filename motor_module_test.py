@@ -30,8 +30,7 @@ class MotorModule(rm.ProtoModule):
         
         self.MOVE_MODIFIER = 1.0
         self.TURN_MODIFIER = 1.0
-        # 6 inches / (Wheel diameter * pi * 1 in / 25.2 mm)
-        self.MOVE_ROTATIONS = 500 # 6 / (32 * math.pi / 25.4)
+        self.MOVE_ROTATIONS = 500
         self.CATCHUP_MODIFIER = 1.1
         self.LEFT_MOTOR_PINS = (22, 27)
         self.RIGHT_MOTOR_PINS = (6, 5)
@@ -48,7 +47,7 @@ class MotorModule(rm.ProtoModule):
         self.right_pid.sample_time = 1 / self.FREQUENCY
         self.turn_pid.sample_time = 1 / self.FREQUENCY
         self.left_pid.output_limits = (-1 / self.CATCHUP_MODIFIER, 1 / self.CATCHUP_MODIFIER)
-        self.right_pid.output_limits = (-1 / self.MOVE_MODIFIER, 1 / self.MOVE_MODIFIER)
+        self.right_pid.output_limits = (-1 / self.CATCHUP_MODIFIER, 1 / self.CATCHUP_MODIFIER)
         self.turn_pid.output_limits = (-1 / self.TURN_MODIFIER, 1 / self.TURN_MODIFIER)
 
         # Need to set up connections and stuff
