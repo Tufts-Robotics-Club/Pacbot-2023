@@ -47,7 +47,7 @@ class MotorModule(rm.ProtoModule):
         self.left_pid.sample_time = 1 / self.FREQUENCY
         self.right_pid.sample_time = 1 / self.FREQUENCY
         self.turn_pid.sample_time = 1 / self.FREQUENCY
-        self.left_pid.output_limits = (-1 / self.MOVE_MODIFIER, 1 / self.MOVE_MODIFIER)
+        self.left_pid.output_limits = (-1 / self.CATCHUP_MODIFIER, 1 / self.CATCHUP_MODIFIER)
         self.right_pid.output_limits = (-1 / self.MOVE_MODIFIER, 1 / self.MOVE_MODIFIER)
         self.turn_pid.output_limits = (-1 / self.TURN_MODIFIER, 1 / self.TURN_MODIFIER)
 
@@ -173,10 +173,10 @@ class MotorModule(rm.ProtoModule):
             right_speed = self.right_pid(self.right_encoder.read()) * self.MOVE_MODIFIER
 
             # Modify left and right speeds if difference is greater than error
-            # if left_remaining < right_remaining - self.DIFFERENCE_ERROR:
-            #     left_speed *= self.CATCHUP_MODIFIER
-            # elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
-            #     right_speed *= self.CATCHUP_MODIFIER
+            if left_remaining < right_remaining - self.DIFFERENCE_ERROR:
+                left_speed *= self.CATCHUP_MODIFIER
+            elif right_remaining < left_remaining - self.DIFFERENCE_ERROR:
+                right_speed *= self.CATCHUP_MODIFIER
 
             print(f"   Left: target {str(self.left_pid.setpoint).rjust(5)} | current {str(-self.left_encoder.read()).rjust(5)} | speed {str(left_speed).rjust(5)}  ===  Right: target {str(self.left_pid.setpoint).rjust(5)} | current {str(self.right_encoder.read()).rjust(5)} | speed {str(right_speed).rjust(5)}")
 
