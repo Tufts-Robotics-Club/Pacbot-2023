@@ -135,6 +135,10 @@ class MotorModule(rm.ProtoModule):
                 self.right_motor.stop()
                 return
 
+            # Discard bad sensor values
+            if self.sensor.euler[0] < 0:
+                return
+
             # Change PID target if too far away
             # if self.sensor.euler[0] > self.turn_pid.setpoint + 180:
             #     self.turn_pid.setpoint += 360
@@ -142,7 +146,7 @@ class MotorModule(rm.ProtoModule):
             #     self.turn_pid.setpoint -= 360
 
             # Get speed from PID
-            speed = self.turn_pid(self.sensor.euler[0])
+            speed = 0 self.turn_pid(self.sensor.euler[0])
 
             if speed < 0:
                 self.left_motor.forward(-speed)
