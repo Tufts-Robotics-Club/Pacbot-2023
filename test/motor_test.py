@@ -12,11 +12,13 @@ rotar2 = Encoder.Encoder(17, 25)
 counter = 0
 while counter < 100:
     print(rotar1.read(), rotar2.read())
-    motor1.backward(0.5)
-    motor2.backward(0.5)
+    motor1.backward(0.8)
+    motor2.backward(0.8)
     counter += 1
     sleep(0.05)
 
 
 motor1.stop()
 motor2.stop()
+
+print("done")

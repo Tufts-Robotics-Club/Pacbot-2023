@@ -65,6 +65,7 @@ class AIModule(rm.ProtoModule):
         self.prev_fruit_val = False
         self.needs_to_plan = True
         self.tick_counter = BASE_TICK_COUNTER
+        self.ticks_since_last_plan = 0
 
 
     def msg_received(self, msg, msg_type):
@@ -74,9 +75,9 @@ class AIModule(rm.ProtoModule):
             self.state = msg
             old_pos = self.pacbot_pos
             self.pacbot_pos = (msg.pacman.x, msg.pacman.y)
-            if old_pos != self.pacbot_pos:
+            if old_pos != self.pacbot_pos or self.ticks_since_last_plan >= 10:
                 self.needs_to_plan = True
-                self.tick_counter = BASE_TICK_COUNTER
+                # self.tick_counter = BASE_TICK_COUNTER
             print("message position:", msg.pacman.x, msg.pacman.y)
             if self.state.lives != self.lives:
                 self.lives = self.state.lives
@@ -122,6 +123,7 @@ class AIModule(rm.ProtoModule):
                 out_char = smarterInput.whichWayAStar(self.grid, self.pacbot_pos, 
                                                         goal_pos, non_scared_ghosts, False)
                 self.needs_to_plan = False
+                self.ticks_since_last_plan = 0
             else:
                 out_char = 'q'
             print('OUT CHAR: ' + out_char)
@@ -131,6 +133,8 @@ class AIModule(rm.ProtoModule):
             msg.direction = PacmanDirection.STOP
 
             self.write(msg.SerializeToString(), MsgType.PACMAN_DIRECTION)
+        else:
+            self.ticks_since_last_plan += 1
 
     # PURPOSE: picks the ideal goal position for pacman to move toward based on 
     #          current game state
