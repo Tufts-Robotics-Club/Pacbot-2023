@@ -21,7 +21,7 @@ i2c = board.I2C()  # uses board.SCL and board.SDA
 tca = adafruit_tca9548a.TCA9548A(i2c)
 
 # distance sensor (attached to port 1 of multiplexer)
-vl53 = adafruit_vl53l4cd.VL53L4CD(tca[1])
+vl53 = adafruit_vl53l4cd.VL53L4CD(tca[3])
 
 # OPTIONAL: can set non-default values
 vl53.inter_measurement = 0
