@@ -1,6 +1,6 @@
 # NAME: distanceSensor.py
 # PURPOSE: handling low level distance sensor reading/control
-# AUTHOR: Emma Bethel
+# AUTHORS: Emma Bethel
 
 import adafruit_vl53l4cd
 from enum import Enum
